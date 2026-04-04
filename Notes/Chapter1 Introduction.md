@@ -93,14 +93,14 @@ unguided media: signals are propagated in atmosphere or outer space:
 
 ## 1.4 Delay, Loss, and Throughput
 ### Types of delays
-**Processing delay**: time to examine packet's header and destination, check for bit-level errors.
-**Queue delay**: wait to be transmitted onto outgoing link, depends on congestion level of queue.
-**Transmission delay**: time push out all bits of packet into link.  
+**Processing delay**: time to examine packet's header and destination, check for bit-level errors. 
+**Queue delay**: wait to be transmitted onto outgoing link, depends on congestion level of queue. 
+**Transmission delay**: time push out all bits of packet into link.   
 $$\text{Transmission delay} = \frac{L \; (\text{packet length in bits})}{R \; (\text{transmission rate / link bandwidth in bits/s})}$$
 
 **Propagation delay**: time to propagate bits from the beginning of the link to the router.
 $$\text{Propagation delay} = \frac{d \; (\text{length of physical link})}{s \; (\text{propagation speed} \approx 2 \times 10^8 \text{ m/s})}$$
-
+![delay](pictures/delay.png)
 total nodal delay:
 $$d_{nodal} = d_{proc} + d_{queue} + d_{trans} + d_{prop}$$
 
@@ -109,7 +109,7 @@ a = average rate at which packets arrive at the queue (packets/sec)
 L = packet length (bits)
 
 $$\text{Traffic intensity} = \frac{La}{R}$$
-![traffic intensity](traffic_intensity.png)
+![traffic intensity](pictures/traffic_intensity.png)
 
 La/R ~ 0: average queueing delay is small.
 La/R ~ 1: average queueing delay gets larger and larger.
