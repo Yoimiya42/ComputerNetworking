@@ -124,22 +124,23 @@ rate at which bits transferred between sender/receiver
 
 **bottleneck link**: $\min\{R_1, R_2, \ldots, R_n\}$
 
-## 1.5 Protocol Layers
+## 1.5 Protocol Layers (Five-layer Internet Protocol Stack)
 
-**application layer**: provides network services to user-end applications -> **packet**
-  - HTTP, FTP, SMTP, DNS 
+**Application**: provides services to user-end applications
+  - e.g. Email, Web browsing, DNS
+  - Protocols: **HTTP/HTTPS**, **DNS** 
   
-**transport layer**: transports application layer messages between applications endpoints -> **segment**
-  - TCP, UDP
+**Transport**: End-to-end data transfer (which app/process to send/receive data, reliability)
+  - Protocols: **TCP, UDP**
 
 
-**network layer**: routing of network-layer packets from source to destination -> **datagram**
-  - IP, routing protocols
+**Network**: Communication across networks, address resolution, routing
+  - Core Protocols: **IP**
 
 
-**link layer**: data transfer between neighboring network elements -> **frame**
-  - Ethernet, WiFi
+**Link**: Data transfer between connected nodes
+  - e.g. PC--router, switch--switch
+  - Protocols: **PPP, Ethernet, WiFi**
 
-
-**physical layer**: individual bits within the frame from one node to the next
-  - transmission medium like fiber optic, copper wire, radio
+**Physical**: 0/1s -> real signals
+  - e.g. fiber optic, copper wire, radio
