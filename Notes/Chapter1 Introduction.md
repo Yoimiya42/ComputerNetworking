@@ -1,4 +1,4 @@
-# Chapter1 Introduction
+# Chapter 1 Introduction
 
 Roadmap:
 - 1.1 Overview
@@ -42,10 +42,8 @@ Their access networks are **asymmetric**: high-speed downstream and low-speed up
 3. Fiber to the Home(FTTH)
    - provide an optical fiber path from the centre office directly to each home
    - two optical-distribution architectures: **Active Optical Network(AON)** and **Passive Optical Network(PON)**
-PON： router(access the Internet via it) <--->   
-optical network terminator(ONT) <--(dedicated optical fiber)-->   
-optical splitter(combine a number of homes) <--->   
-optical line terminator(OLT)(provide conversion between optical and electrical signals)
+   - PON path:
+     router(access the Internet via it) <---> ONT <--(dedicated optical fiber)--> splitter(combine a number of homes) <---> OLT(provide conversion between optical and electrical signals)
 
 4. 5G Fixed Wireless
 #### Public-area Access
@@ -98,10 +96,10 @@ unguided media: signals are propagated in atmosphere or outer space:
 **Processing delay**: time to examine packet's header and destination, check for bit-level errors.
 **Queue delay**: wait to be transmitted onto outgoing link, depends on congestion level of queue.
 **Transmission delay**: time push out all bits of packet into link.  
-$$transmission\ delay = \frac{L\ (packet\ length (bits))}{R\ (transmission\ rate（link bandwidth） (bits/sec))}$$
+$$\text{Transmission delay} = \frac{L \; (\text{packet length in bits})}{R \; (\text{transmission rate / link bandwidth in bits/s})}$$
 
 **Propagation delay**: time to propagate bits from the beginning of the link to the router.
-$$propagation\ delay = \frac{d\ (length\ of\ physical\ link)}{s\ (propagation\ speed\ (~2x10^8\ m/s\ ~light\ speed))}$$
+$$\text{Propagation delay} = \frac{d \; (\text{length of physical link})}{s \; (\text{propagation speed} \approx 2 \times 10^8 \text{ m/s})}$$
 
 total nodal delay:
 $$d_{nodal} = d_{proc} + d_{queue} + d_{trans} + d_{prop}$$
@@ -110,8 +108,8 @@ $$d_{nodal} = d_{proc} + d_{queue} + d_{trans} + d_{prop}$$
 a = average rate at which packets arrive at the queue (packets/sec)
 L = packet length (bits)
 
-$traffic\ intensity = \frac{L*a}{R}$
-![traffic intensity] (pictures/traffic_intensity.png)
+$$\text{Traffic intensity} = \frac{La}{R}$$
+![traffic intensity](traffic_intensity.png)
 
 La/R ~ 0: average queueing delay is small.
 La/R ~ 1: average queueing delay gets larger and larger.
@@ -124,16 +122,24 @@ rate at which bits transferred between sender/receiver
 - **instantaneous**: rate at a given point in time
 - **average**: rate over longer period of time
 
-**bottleneck link**: $min\{R_1, R_2, ...R_n\}$
+**bottleneck link**: $\min\{R_1, R_2, \ldots, R_n\}$
 
 ## 1.5 Protocol Layers
+
 **application layer**: provides network services to user-end applications -> **packet**
-  - HTTP, FTP, SMTP, DNS
+  - HTTP, FTP, SMTP, DNS 
+  
 **transport layer**: transports application layer messages between applications endpoints -> **segment**
   - TCP, UDP
+
+
 **network layer**: routing of network-layer packets from source to destination -> **datagram**
   - IP, routing protocols
+
+
 **link layer**: data transfer between neighboring network elements -> **frame**
   - Ethernet, WiFi
+
+
 **physical layer**: individual bits within the frame from one node to the next
   - transmission medium like fiber optic, copper wire, radio
