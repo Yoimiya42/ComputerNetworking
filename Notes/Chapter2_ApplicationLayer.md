@@ -20,18 +20,29 @@
 Inter-process Communication (defined by OS) 
 To check the processes running on the host: TaskManager (Windows) -> Details:
 <img src="pictures/processes_in_host.png" width="75%" />
+Or open command line and type:
+```bash
+netstat -ano
+```
+<img src="pictures/processes_in_host3.png" width="50%" />
+
+
 ##### 2. Across different hosts: 
 by exchanging **message** to/from **socket**, which is the API between **Application-layer** and **Transport-layer**, identified by **IP address** (identify the host)+ **port number** (identify the receiving process on the host)  ![process_socket](pictures/process_socket.png)
 
 
-Client process initiates communication
+Client process initiates communication  
 Server process waits to be connected
 
 ### Transport-layer Services to Application Layer:
 Transport-layer *could* provide in general:
- 1. **Data transfer reliability** (e.g., TCP/UDP)
+ 1. **Data transfer reliability** (TCP/UDP)
  2. **Throughput**
  3. **Timing**
  4. **Security** (e.g., encryption, authentication)
 
 The Internet (TCP/IP networks) actually provides only 1&4, but not 2&3.
+
+--- 
+
+### 2.2 The Web and HTTP
