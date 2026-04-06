@@ -18,8 +18,8 @@
 
 ##### 1. Within the same host: 
 Inter-process Communication (defined by OS) 
-To check the processes running on the host: TaskManager (Windows) -> Details:
-<img src="pictures/processes_in_host.png" width="75%" />
+To check the processes running on the host: TaskManager (Windows) - > Details:
+<img src="pictures/processes_in_host.png" width="75%" />  
 Or open command line and type:
 ```bash
 netstat -ano
