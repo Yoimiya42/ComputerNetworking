@@ -18,7 +18,8 @@
 
 ##### 1. Within the same host: 
 Inter-process Communication (defined by OS) 
-To check the processes running on the host, use `netstat` command in terminal.
+To check the processes running on the host: TaskManager (Windows) -> Details:
+<img src="pictures/processes_in_host.png" width="75%" />
 ##### 2. Across different hosts: 
 by exchanging **message** to/from **socket**, which is the API between **Application-layer** and **Transport-layer**, identified by **IP address** (identify the host)+ **port number** (identify the receiving process on the host)  ![process_socket](pictures/process_socket.png)
 
