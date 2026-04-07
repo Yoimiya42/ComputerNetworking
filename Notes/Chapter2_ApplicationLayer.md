@@ -45,4 +45,19 @@ The Internet (TCP/IP networks) actually provides only 1&4, but not 2&3.
 
 --- 
 
-### 2.2 The Web and HTTP
+## 2.2 The Web and HTTP(Hypertext Transfer Protocol)
+
+A Web page is consists of **objects**(e.g. HTML file, JPEG image, video clip, etc.). Each object is addressed by a **URL**(Uniform Resource Locator) and identified by **hostname + path name**.   
+
+HTTP uses **TCP**. Client initiates TCP connection with server, then send request/receive response through **socket**.
+
+
+### HTTP Message Format
+
+### Cookies
+### Web Caches
+
+
+---
+
+## 2.3 Electronic Mail
