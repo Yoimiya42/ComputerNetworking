@@ -1,5 +1,6 @@
 # Chapter 2 Application Layer
 
+
 --- 
 
 ## 2.1 Principles of Network Applications
@@ -53,13 +54,17 @@ HTTP uses **TCP**. Client initiates TCP connection with server, then send reques
 
 
 ### HTTP Message Format
+HTTP Request Format:
+<img src="pictures/http_request_format.jpg" width="75%" />
+HTTP Response Format:
+<img src="pictures/http_response_format.jpg" width="75%" />
 
 ### Cookies
 An identifier set by the server and stored by the browser, which is sent back to the server with every HTTP request. The server can use it to retrieve the state and data of the user (e.g., login status, personalization, etc.).
 
 ### Web Caches
 client <---> **Web Cache (Proxy Server)** <---> origin
-1. Reduce response time for client
+1. Reduce response time for client 
 2. Reduce traffic on access link to origin server
 
 ```python
