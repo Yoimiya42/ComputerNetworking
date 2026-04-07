@@ -144,3 +144,5 @@ rate at which bits transferred between sender/receiver
 
 **Physical**: 0/1s -> real signals
   - e.g. fiber optic, copper wire, radio
+
+<img src="pictures/five_layers.jpg" width="75%" />
