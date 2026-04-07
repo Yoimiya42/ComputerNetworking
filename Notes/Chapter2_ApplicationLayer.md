@@ -94,3 +94,15 @@ else: # cache hit
 ---
 
 ## 2.3 Electronic Mail
+Three major components:
+1. **User Agent**
+2. **Mail Server**
+3. **SMTP**(Simple Mail Transfer Protocol)  
+<img src="pictures/email_components.png" width="65%" />
+
+Email communication:
+<img src="pictures/email_communication.png" width="75%" />
+The HTTP and IMAP(Internet Message Access Protocol) are used for **retrieving** emails from the mail server to the user agent.
+
+*Push Protocol*: The side **possesses the data**, **actively sends data** to the other side. The sender is responsible for **delivery**. (e.g., SMTP)
+*Pull Protocol*: The side **wants the data**, **sends request to retrieve it**. The receiver is responsible for **retrieval**. (e.g., HTTP, IMAP)
