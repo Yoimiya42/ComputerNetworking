@@ -55,8 +55,32 @@ HTTP uses **TCP**. Client initiates TCP connection with server, then send reques
 ### HTTP Message Format
 
 ### Cookies
-### Web Caches
+An identifier set by the server and stored by the browser, which is sent back to the server with every HTTP request. The server can use it to retrieve the state and data of the user (e.g., login status, personalization, etc.).
 
+### Web Caches
+client <---> **Web Cache (Proxy Server)** <---> origin
+1. Reduce response time for client
+2. Reduce traffic on access link to origin server
+
+```python
+# How the web cache works with Conditional GET:
+Receive HTTP request for an object'x' from client;
+if cache misses (object'x' is not in cache):
+    cache -> origin server:     GET x;
+    origin server -> cache:     200 OK + object'x' + Last-Modified;
+    cache stores object'x' and its Last-Modified Time;
+    cache -> client:            200 OK + object'x';
+else: # cache hit
+    cache -> origin server: GET object'x' with `If-Modified-Since` field (= Last-Modified Time);
+
+    if object'x' is not modified since Last-Modified Time:
+        origin server -> cache: 304 Not Modified;
+        cache -> client:        200 OK + object'x';
+    else: # object'x' is modified since Last-Modified Time
+        origin server -> cache: 200 OK + object'x' + Last-Modified;
+        cache updates object'x' and its Last-Modified Time;
+        cache -> client:        200 OK + object'x';
+```
 
 ---
 
