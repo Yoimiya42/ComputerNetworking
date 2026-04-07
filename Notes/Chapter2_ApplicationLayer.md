@@ -33,6 +33,7 @@ by exchanging **message** to/from **socket**, which is the API between **Applica
 
 
 Client process initiates communication  
+
 Server process waits to be connected
 
 ### Transport-layer Services to Application Layer:
@@ -55,8 +56,11 @@ HTTP uses **TCP**. Client initiates TCP connection with server, then send reques
 
 ### HTTP Message Format
 HTTP Request Format:
+
 <img src="pictures/http_request_format.jpg" width="75%" />
+
 HTTP Response Format:
+
 <img src="pictures/http_response_format.jpg" width="75%" />
 
 ### Cookies
