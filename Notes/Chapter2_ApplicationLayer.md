@@ -97,7 +97,7 @@ else: # cache hit
 Three major components:
 1. **User Agent**
 2. **Mail Server**
-3. **SMTP**(Simple Mail Transfer Protocol)  
+3. **SMTP** (Simple Mail Transfer Protocol)  
 <img src="pictures/email_components.png" width="65%" />
 
 Email communication:
@@ -109,3 +109,25 @@ The HTTP and IMAP(Internet Message Access Protocol) are used for **retrieving** 
 *Push Protocol*: The side **possesses the data**, **actively sends data** to the other side. The sender is responsible for **delivery**. (e.g., SMTP)
 
 *Pull Protocol*: The side **wants the data**, **sends request to retrieve it**. The receiver is responsible for **retrieval**. (e.g., HTTP, IMAP)
+
+---
+
+## 2.4 DNS (Domain Name System)
+
+The DNS is a:
+1. **distributed database** implemented in a **hierarchy of DNS servers**
+2. **application-layer protocol** that allows hosts to query the distributed database
+
+The DNS is used to map **hostname** to **IP address** (Alias hostname -> canonical hostname -> IP address). 
+e.g., `www.somecompany.com` -> `server12.prod.london.somecompany.com` -> `121.7.106.83`.
+
+### Hierarchy of DNS Servers
+1. **Root DNS Servers**
+2. **Top-level domain (TLD) Servers** (e.g., `.com`, `.org`, `.edu`. `uk`, etc.)
+3. **Authoritative DNS Servers**, house organizations' publicly accessible DNS records
+4. **Local DNS Servers**
+   - Provided by ISPs, act as *proxy*, forward query into hierarchy.
+   - Cache recent name-to-address translation pairs locally to reduce query time and traffic in hierarchy. Cache entries timeout after TTL (Time To Live).
+
+End hosts -> Local DNS: **recursive query** (Local DNS is responsible for query DNS hierarchy and directly return the result) 
+Local DNS -> Other DNS: **Iterative query** (Local DNS is told which DNS server to contact next, until it reaches the authoritative DNS server and gets the result)
