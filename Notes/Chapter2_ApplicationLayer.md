@@ -169,3 +169,15 @@ Type = MX:
 ```
 
 ### DNS Protocol & Message
+Both DNS *query* and *reply* messages have the same format:
+<img src="pictures/dns_message_format.png" width="75%" />
+- Identification: query and reply to query have the same ID
+- Flags:
+  - `Query`/`Reply`: 0 for query, 1 for reply
+  - `Authoritative`: 1 if the responding DNS server is authoritative for the queried hostname
+  - `Recursion Desired`: 1 if the client wants the DNS server to perform recursive query
+  - `Recursion Available`: 1 if the DNS server can perform recursive query
+
+---
+
+### 2.5 Peer-to-Peer File Distribution
