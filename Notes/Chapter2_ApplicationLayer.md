@@ -188,13 +188,24 @@ There are N peers, each peer upload rate = $u_i$ bits/s, download rate = $d_i$ b
 
 what is the minimum distribution time $D$ to distribute the file to all N peers?
 
-Client-Server:   
+Client-Server: 
+
 $$D_{C-S} \geq \max(\frac{NF}{u_s}, \frac{F}{d_{min}})$$  
 
 where $d_{min} = \min\{d_1, d_2, \ldots, d_N\}$   
 The distribution time grows linearly with N as more peers are added, which is not scalable.  
 
-P2P:   
+P2P:
+
 $$D_{P2P} \geq \max(\frac{F}{u_s}, \frac{F}{d_{min}}, \frac{NF}{u_s + \sum_{i=1}^N u_i})$$     
 Each peer brings additional upload capacity, so the distribution time does not grow linearly with N, which is more scalable.
 
+#### BitTorrent 
+Tracker: tracks peers participating in torrent
+Torrent: group of peers exchanging chunks of a file
+
+A file is divided into many chunks, and the peers exchange those chunks form a torrent. A new peer join with no chunks, registers with the tracker, get a list of peers and establish TCP connection with them. It requests neighbors with missing chunks, and downloads them while uploading the chunks it already has to others. Once peer has entire file. it may selfishly leave or altruistically remain in torrent.
+
+Core mechanism:
+1. **Rarest first**: each peer first requests the chunk that is least replicated among its neighbors, so rare chunks spread quickly and do not become a bottleneck.
+2. **tit-for-tat**: each peer prefers to upload to neighbors that are currently uploading to it at the highest rate. which encourages mutual sharing instead of free-riding.  
