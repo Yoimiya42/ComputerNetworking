@@ -119,7 +119,7 @@ The DNS is a:
 2. **application-layer protocol** that allows hosts to query the distributed database
 
 The DNS is used to map **hostname** to **IP address** (Alias hostname -> canonical hostname -> IP address). 
-e.g., `www.somecompany.com` -> `server12.prod.london.somecompany.com` -> `121.7.106.83`.
+e.g., `www.somecompany.com` -> `server12.london.somecompany.com` -> `121.7.106.42`.
 
 ### Hierarchy of DNS Servers
 1. **Root DNS Servers**
@@ -131,3 +131,41 @@ e.g., `www.somecompany.com` -> `server12.prod.london.somecompany.com` -> `121.7.
 
 End hosts -> Local DNS: **recursive query** (Local DNS is responsible for query DNS hierarchy and directly return the result) 
 Local DNS -> Other DNS: **Iterative query** (Local DNS is told which DNS server to contact next, until it reaches the authoritative DNS server and gets the result)
+
+### DNS Resource Records
+Resource Record (RR) format:
+```python
+RR = (Name, Value, Type, TTL);
+
+Type = A:
+    Name = hostname
+    Value = IP address
+    # (server12.london.somecompany.com, 121.7.106.42, A, 3600)
+Type = NS: 
+    Name = domain
+    Value = hostname of authoritative name server for this domain
+    # Used to route DNS queries further along in the DNS hierarchy
+    # (somecompany.com, dns-server1.somecompany.com, NS, 3600)
+Type = CNAME:
+    Name = Alias hostname
+    Value = Canonical hostname
+    # (www.somecompany.com, server12.london.somecompany.com, CNAME, 3600)
+
+Type = MX: 
+    Name = Alias hostname of mail server
+    Value = Canonical hostname of mail server
+    # (somecompany.com, mail.somecompany.com, MX, 3600)
+
+
+################# Example #################
+(NS)somecompany.com -> dns-server1.somecompany.com
+(A) dns-server1.somecompany.com -> 120.2.105.38
+
+(CNAME)www.somecompany.com -> server12.london.somecompany.com
+(A)server12.london.somecompany.com -> 121.7.106.42
+
+(MX)somecompany.com -> mail.somecompany.com
+(A)mail.somecompany.com -> 192.0.2.50
+```
+
+### DNS Protocol & Message
