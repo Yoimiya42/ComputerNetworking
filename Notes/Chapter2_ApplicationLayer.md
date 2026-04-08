@@ -189,12 +189,12 @@ There are N peers, each peer upload rate = $u_i$ bits/s, download rate = $d_i$ b
 what is the minimum distribution time $D$ to distribute the file to all N peers?
 
 Client-Server:   
-$$ D_{C-S} \geq \max(\frac{NF}{u_s}, \frac{F}{d_{min}}) $$  
+$$D_{C-S} \geq \max(\frac{NF}{u_s}, \frac{F}{d_{min}})$$  
 
 where $d_{min} = \min\{d_1, d_2, \ldots, d_N\}$   
 The distribution time grows linearly with N as more peers are added, which is not scalable.  
 
 P2P:   
-$$ D_{P2P} \geq \max(\frac{F}{u_s}, \frac{F}{d_{min}}, \frac{NF}{u_s + \sum_{i=1}^N u_i}) $$     
+$$D_{P2P} \geq \max(\frac{F}{u_s}, \frac{F}{d_{min}}, \frac{NF}{u_s + \sum_{i=1}^N u_i})$$     
 Each peer brings additional upload capacity, so the distribution time does not grow linearly with N, which is more scalable.
 
