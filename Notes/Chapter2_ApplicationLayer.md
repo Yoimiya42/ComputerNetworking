@@ -3,25 +3,29 @@
 <a id="contents"></a>
 ## Contents
 
-- [2.1 Principles of Network Applications](#21-principles-of-network-applications)
-  - [Application Architectures](#application-architectures)
-  - [Process communicating](#process-communicating)
-  - [Transport-layer Services to Application Layer:](#transport-layer-services-to-application-layer)
-- [2.2 The Web and HTTP(Hypertext Transfer Protocol)](#22-the-web-and-httphypertext-transfer-protocol)
-  - [HTTP Message Format](#http-message-format)
-  - [Cookies](#cookies)
-  - [Web Caches](#web-caches)
-- [2.3 Electronic Mail](#23-electronic-mail)
-- [2.4 DNS (Domain Name System)](#24-dns-domain-name-system)
-  - [Hierarchy of DNS Servers](#hierarchy-of-dns-servers)
-  - [DNS Resource Records](#dns-resource-records)
-  - [DNS Protocol & Message](#dns-protocol--message)
-- [2.5 Peer-to-Peer File Distribution](#25-peer-to-peer-file-distribution)
-  - [Scalability Analysis: Client-Server vs P2P](#scalability-analysis-client-server-vs-p2p)
-  - [BitTorrent](#bittorrent)
-- [2.6 Video Streaming and CDN (Content Distribution Network)](#26-video-streaming-and-cdn-content-distribution-network)
-  - [DASH (Dynamic Adaptive Streaming over HTTP)](#dash-dynamic-adaptive-streaming-over-http)
-  - [CDN (Content Distribution Network)](#cdn-content-distribution-network)
+- [Chapter 2 Application Layer](#chapter-2-application-layer)
+  - [Contents](#contents)
+  - [2.1 Principles of Network Applications](#21-principles-of-network-applications)
+    - [Application Architectures](#application-architectures)
+    - [Process Communication](#process-communication)
+      - [1. Within the Same Host](#1-within-the-same-host)
+      - [2. Across Different Hosts](#2-across-different-hosts)
+    - [Transport-Layer Services for the Application Layer](#transport-layer-services-for-the-application-layer)
+  - [2.2 The Web and HTTP (Hypertext Transfer Protocol)](#22-the-web-and-http-hypertext-transfer-protocol)
+    - [HTTP Message Format](#http-message-format)
+    - [Cookies](#cookies)
+    - [Web Caches](#web-caches)
+  - [2.3 Electronic Mail](#23-electronic-mail)
+  - [2.4 DNS (Domain Name System)](#24-dns-domain-name-system)
+    - [Hierarchy of DNS Servers](#hierarchy-of-dns-servers)
+    - [DNS Resource Records](#dns-resource-records)
+    - [DNS Protocol \& Message](#dns-protocol--message)
+  - [2.5 Peer-to-Peer File Distribution](#25-peer-to-peer-file-distribution)
+    - [Scalability Analysis: Client-Server vs P2P](#scalability-analysis-client-server-vs-p2p)
+    - [BitTorrent](#bittorrent)
+  - [2.6 Video Streaming and CDN (Content Distribution Network)](#26-video-streaming-and-cdn-content-distribution-network)
+    - [DASH (Dynamic Adaptive Streaming over HTTP)](#dash-dynamic-adaptive-streaming-over-http)
+    - [CDN (Content Distribution Network)](#cdn-content-distribution-network)
 
 --- 
 
@@ -30,17 +34,17 @@
 ### Application Architectures
 
  1. **Client-Server** 
-     - **Centralized** always-on server with Permanent IP address
+     - **Centralized** always-on server with a permanent IP address
      - data centers for scaling
  2. **Peer-to-Peer** 
      - **Decentralized**
      - Self-scalable
      - Peers are intermittently connected and change IP addresses
 
-### Process communicating
-##### 1. Within the same host: 
-Inter-process Communication (defined by OS) 
-To check the processes running on the host: TaskManager (Windows) - > Details:
+### Process Communication
+#### 1. Within the Same Host
+Inter-process communication (defined by the OS)
+To check the processes running on the host: Task Manager (Windows) -> Details:
 <img src="pictures/processes_in_host.png" width="75%" />  
 Or open command line and type:
 ```bash
@@ -49,32 +53,32 @@ netstat -ano
 <img src="pictures/processes_in_host3.png" width="50%" />
 
 
-##### 2. Across different hosts: 
-by exchanging **message** to/from **socket**, which is the API between **Application-layer** and **Transport-layer**, identified by **IP address** (identify the host)+ **port number** (identify the receiving process on the host)  ![process_socket](pictures/process_socket.png)
+#### 2. Across Different Hosts
+By exchanging **messages** to/from a **socket**, which is the API between the **application layer** and the **transport layer**. A socket is identified by an **IP address** (which identifies the host) and a **port number** (which identifies the receiving process on the host). ![process_socket](pictures/process_socket.png)
 
 
-Client process initiates communication  
+The client process initiates communication.  
 
-Server process waits to be connected
+The server process waits for incoming connections.
 
-### Transport-layer Services to Application Layer:
-Transport-layer *could* provide in general:
+### Transport-Layer Services for the Application Layer
+The transport layer *could* provide, in general:
  1. **Data transfer reliability** (TCP/UDP)
  2. **Throughput**
  3. **Timing**
  4. **Security** (e.g., encryption, authentication)
 
-The Internet (TCP/IP networks) actually provides only 1&4, but not 2&3.
+The Internet (TCP/IP networks) actually provides only 1 and 4, not 2 and 3.
 
 [Back to Contents](#contents)
 
 --- 
 
-## 2.2 The Web and HTTP(Hypertext Transfer Protocol)
+## 2.2 The Web and HTTP (Hypertext Transfer Protocol)
 
-A Web page is consists of **objects**(e.g. HTML file, JPEG image, video clip, etc.). Each object is addressed by a **URL**(Uniform Resource Locator) and identified by **hostname + path name**.   
+A web page consists of **objects** (e.g., an HTML file, a JPEG image, a video clip, etc.). Each object is addressed by a **URL** (Uniform Resource Locator) and identified by a **hostname + path name**.   
 
-HTTP uses **TCP**. Client initiates TCP connection with server, then send request/receive response through **socket**.
+HTTP uses **TCP**. The client initiates a TCP connection with the server, then sends requests and receives responses through a **socket**.
 
 
 ### HTTP Message Format
@@ -96,22 +100,22 @@ client <---> **Web Cache (Proxy Server)** <---> origin
 
 ```python
 # How the web cache works with Conditional GET:
-Receive HTTP request for an object'x' from client;
-if cache misses (object'x' is not in cache):
+Receive an HTTP request for object 'x' from the client;
+if the cache misses (object 'x' is not in the cache):
     cache -> origin server:     GET x;
-    origin server -> cache:     200 OK + object'x' + Last-Modified;
-    cache stores object'x' and its Last-Modified Time;
-    cache -> client:            200 OK + object'x';
+    origin server -> cache:     200 OK + object 'x' + Last-Modified;
+    cache stores object 'x' and its Last-Modified time;
+    cache -> client:            200 OK + object 'x';
 else: # cache hit
-    cache -> origin server: GET object'x' with `If-Modified-Since` field (= Last-Modified Time);
+    cache -> origin server: GET object 'x' with `If-Modified-Since` (= Last-Modified time);
 
-    if object'x' is not modified since Last-Modified Time:
+    if object 'x' is not modified since the Last-Modified time:
         origin server -> cache: 304 Not Modified;
-        cache -> client:        200 OK + object'x';
-    else: # object'x' is modified since Last-Modified Time
-        origin server -> cache: 200 OK + object'x' + Last-Modified;
-        cache updates object'x' and its Last-Modified Time;
-        cache -> client:        200 OK + object'x';
+        cache -> client:        200 OK + object 'x';
+    else: # object 'x' is modified since the Last-Modified time
+        origin server -> cache: 200 OK + object 'x' + Last-Modified;
+        cache updates object 'x' and its Last-Modified time;
+        cache -> client:        200 OK + object 'x';
 ```
 
 [Back to Contents](#contents)
@@ -129,11 +133,11 @@ Email communication:
 
 <img src="pictures/email_communication.png" width="75%" />
 
-The HTTP and IMAP(Internet Message Access Protocol) are used for **retrieving** emails from the mail server to the user agent.
+HTTP and IMAP (Internet Message Access Protocol) are used for **retrieving** emails from the mail server to the user agent.
 
 *Push Protocol*: The side **possesses the data**, **actively sends data** to the other side. The sender is responsible for **delivery**. (e.g., SMTP)
 
-*Pull Protocol*: The side **wants the data**, **sends request to retrieve it**. The receiver is responsible for **retrieval**. (e.g., HTTP, IMAP)
+*Pull Protocol*: The side **wants the data** and **sends a request to retrieve it**. The receiver is responsible for **retrieval**. (e.g., HTTP, IMAP)
 
 [Back to Contents](#contents)
 
@@ -151,13 +155,13 @@ e.g., `www.somecompany.com` -> `server12.london.somecompany.com` -> `121.7.106.4
 ### Hierarchy of DNS Servers
 1. **Root DNS Servers**
 2. **Top-level domain (TLD) Servers** (e.g., `.com`, `.org`, `.edu`. `uk`, etc.)
-3. **Authoritative DNS Servers**, house organizations' publicly accessible DNS records
+3. **Authoritative DNS Servers**, which host organizations' publicly accessible DNS records
 4. **Local DNS Servers**
-   - Provided by ISPs, act as *proxy*, forward query into hierarchy.
-   - Cache recent name-to-address translation pairs locally to reduce query time and traffic in hierarchy. Cache entries timeout after TTL (Time To Live).
+   - Provided by ISPs, act as a *proxy*, and forward queries into the hierarchy.
+   - Cache recent name-to-address translation pairs locally to reduce query time and traffic in the hierarchy. Cache entries time out after the TTL (Time To Live).
 
-End hosts -> Local DNS: **recursive query** (Local DNS is responsible for query DNS hierarchy and directly return the result) 
-Local DNS -> Other DNS: **Iterative query** (Local DNS is told which DNS server to contact next, until it reaches the authoritative DNS server and gets the result)
+End hosts -> Local DNS: **recursive query** (the local DNS is responsible for querying the DNS hierarchy and directly returning the result) 
+Local DNS -> Other DNS: **iterative query** (the local DNS is told which DNS server to contact next until it reaches the authoritative DNS server and gets the result)
 
 ### DNS Resource Records
 Resource Record (RR) format:
@@ -209,14 +213,14 @@ Both DNS *query* and *reply* messages have the same format:
 
 ---
 
-### 2.5 Peer-to-Peer File Distribution
+## 2.5 Peer-to-Peer File Distribution
 
-#### Scalability Analysis: Client-Server vs P2P
+### Scalability Analysis: Client-Server vs P2P
 File size = F bits
 Server upload rate = $u_s$ bits/s
 There are N peers, each peer upload rate = $u_i$ bits/s, download rate = $d_i$ bits/s
 
-what is the minimum distribution time $D$ to distribute the file to all N peers?
+What is the minimum distribution time $D$ to distribute the file to all N peers?
 
 Client-Server: 
 
@@ -230,29 +234,29 @@ P2P:
 $$D_{P2P} \geq \max(\frac{F}{u_s}, \frac{F}{d_{min}}, \frac{NF}{u_s + \sum_{i=1}^N u_i})$$     
 Each peer brings additional upload capacity, so the distribution time does not grow linearly with N, which is more scalable.
 
-#### BitTorrent 
+### BitTorrent
 Tracker: tracks peers participating in torrent
 Torrent: group of peers exchanging chunks of a file
 
-A file is divided into many chunks, and the peers exchange those chunks form a torrent. A new peer join with no chunks, registers with the tracker, get a list of peers and establish TCP connection with them. It requests neighbors with missing chunks, and downloads them while uploading the chunks it already has to others. Once peer has entire file. it may selfishly leave or altruistically remain in torrent.
+A file is divided into many chunks, and the peers exchange those chunks within a torrent. A new peer joins with no chunks, registers with the tracker, gets a list of peers, and establishes TCP connections with them. It requests missing chunks from neighbors and downloads them while uploading the chunks it already has to others. Once a peer has the entire file, it may selfishly leave or altruistically remain in the torrent.
 
 Core mechanism:
 1. **Rarest first**: each peer first requests the chunk that is least replicated among its neighbors, so rare chunks spread quickly and do not become a bottleneck.
-2. **tit-for-tat**: each peer prefers to upload to neighbors that are currently uploading to it at the highest rate. which encourages mutual sharing instead of free-riding.  
+2. **Tit-for-tat**: each peer prefers to upload to neighbors that are currently uploading to it at the highest rate. This encourages mutual sharing instead of free-riding.  
 
 [Back to Contents](#contents)
 
 ---
   
-### 2.6 Video Streaming and CDN (Content Distribution Network)
+## 2.6 Video Streaming and CDN (Content Distribution Network)
 The dimensions of video:
 1. Codec (Coder-Decoder): The algorithm used to compress raw video/audio for storage, and decompress it for playing.
     - H.264/AVC (Advanced Video Coding)
     - H.265/HEVC (High Efficiency Video Coding)
-2. Resolution: Number of pixels in width*height. More pixels = more details
+2. Resolution: Number of pixels in width x height. More pixels = more details
    - 720p (HD): 1280*720 
    - 1080p (Full HD): 1920*1080
-   - 4k (Ultra HD): 3840*2160
+   - 4K (Ultra HD): 3840*2160
 3. Frame Rate/FPS: Number of frames displayed per second
      - 24fps: movies, classic 'film look'
      - 25fps: TV in UK, Europe, China (PAL standard)
@@ -266,17 +270,17 @@ The dimensions of video:
      - 8-bit: 256  (2^8) levels per channel, 16.7 million colors
      - 10-bit: 1024 (2^10) levels per channel, 1.07 billion colors
      - 12-bit: 4096 (2^12) levels per channel, 68.7 billion colors
-#### DASH (Dynamic Adaptive Streaming over HTTP)
+### DASH (Dynamic Adaptive Streaming over HTTP)
 Server:
 - Divides video file into multiple chunks
-- Each chunk stored and encoded at different bitrate and quality levels (e.g., 720p, 1080p, 4k)
+- Each chunk is stored and encoded at different bitrate and quality levels (e.g., 720p, 1080p, 4K)
 - **Manifest**: provides URLs for the different chunks at different quality levels 
   
 Client: 
-- Measures periodically server-to-client bandwidth and buffer status
-- Consulting manifest, request appropriate chunk quality level based on current network conditions (Higher quality when more bandwidth available)
+- Periodically measures server-to-client bandwidth and buffer status
+- Consults the manifest and requests an appropriate chunk quality level based on current network conditions (higher quality when more bandwidth is available)
 
-#### CDN (Content Distribution Network)
+### CDN (Content Distribution Network)
 Two CDN deployment philosophies:
 1. **Enter Deep**: Deploy CDN servers **deep into** many access networks (close to users). e.g., Akamai — thousands of locations. Low delay, high throughput to users, but harder to manage.
 2. **Bring Home**: Fewer, **larger clusters** at key locations (e.g., Internet Exchange Points), "bring" users to them. e.g., Limelight. Easier to manage, slightly higher delay.
