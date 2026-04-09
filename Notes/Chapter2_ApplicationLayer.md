@@ -222,22 +222,29 @@ The dimensions of video:
    - 1080p (Full HD): 1920*1080
    - 4k (Ultra HD): 3840*2160
 3. Frame Rate/FPS: Number of frames displayed per second
-  - 24fps: movies, classic 'film look'
-  - 25fps: TV in UK, Europe, China (PAL standard)
-  - 30fps: online video
-  - 60fps: Sports broadcasts, gaming
-  - 120fps: slow-motion source footage
+     - 24fps: movies, classic 'film look'
+     - 25fps: TV in UK, Europe, China (PAL standard)
+     - 30fps: online video
+     - 60fps: Sports broadcasts, gaming
+     - 120fps: slow-motion source footage
 4. Bitrate: Amount of data transmitted per second, measured in Mbps (Megabits per second) or kbps. Higher bitrate = better quality, larger file size
-   - CBR (Constant Bitrate): same bitrate throughout
-   - VBR (Variable Bitrate): varying bitrate based on content complexity
+      - CBR (Constant Bitrate): same bitrate throughout
+      - VBR (Variable Bitrate): varying bitrate based on content complexity
 5. Bit Depth: Number of bits used to represent each color channel of pixel
-  - 8-bit: 256  (2^8) levels per channel, 16.7 million colors
-  - 10-bit: 1024 (2^10) levels per channel, 1.07 billion colors
-  - 12-bit: 4096 (2^12) levels per channel, 68.7 billion colors
+     - 8-bit: 256  (2^8) levels per channel, 16.7 million colors
+     - 10-bit: 1024 (2^10) levels per channel, 1.07 billion colors
+     - 12-bit: 4096 (2^12) levels per channel, 68.7 billion colors
 #### DASH (Dynamic Adaptive Streaming over HTTP)
 Server:
 - Divides video file into multiple chunks
-- Each chunk stored and encoded at different bitrate or quality levels (e.g., 720p, 1080p, 4k)
-- **Manifest** file: provides URLs for the different chunks at different quality levels 
+- Each chunk stored and encoded at different bitrate and quality levels (e.g., 720p, 1080p, 4k)
+- **Manifest**: provides URLs for the different chunks at different quality levels 
   
 Client: 
+- Measures periodically server-to-client bandwidth and buffer status
+- Consulting manifest, request appropriate chunk quality level based on current network conditions (Higher quality when more bandwidth available)
+
+#### CDN (Content Distribution Network)
+Two CDN deployment philosophies:
+1. **Enter Deep**: Deploy CDN servers **deep into** many access networks (close to users). e.g., Akamai — thousands of locations. Low delay, high throughput to users, but harder to manage.
+2. **Bring Home**: Fewer, **larger clusters** at key locations (e.g., Internet Exchange Points), "bring" users to them. e.g., Limelight. Easier to manage, slightly higher delay.
