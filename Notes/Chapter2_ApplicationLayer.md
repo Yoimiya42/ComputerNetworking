@@ -209,3 +209,35 @@ A file is divided into many chunks, and the peers exchange those chunks form a t
 Core mechanism:
 1. **Rarest first**: each peer first requests the chunk that is least replicated among its neighbors, so rare chunks spread quickly and do not become a bottleneck.
 2. **tit-for-tat**: each peer prefers to upload to neighbors that are currently uploading to it at the highest rate. which encourages mutual sharing instead of free-riding.  
+
+---
+  
+### 2.6 Video Streaming and CDN (Content Distribution Network)
+The dimensions of video:
+1. Codec (Coder-Decoder): The algorithm used to compress raw video/audio for storage, and decompress it for playing.
+    - H.264/AVC (Advanced Video Coding)
+    - H.265/HEVC (High Efficiency Video Coding)
+2. Resolution: Number of pixels in width*height. More pixels = more details
+   - 720p (HD): 1280*720 
+   - 1080p (Full HD): 1920*1080
+   - 4k (Ultra HD): 3840*2160
+3. Frame Rate/FPS: Number of frames displayed per second
+  - 24fps: movies, classic 'film look'
+  - 25fps: TV in UK, Europe, China (PAL standard)
+  - 30fps: online video
+  - 60fps: Sports broadcasts, gaming
+  - 120fps: slow-motion source footage
+4. Bitrate: Amount of data transmitted per second, measured in Mbps (Megabits per second) or kbps. Higher bitrate = better quality, larger file size
+   - CBR (Constant Bitrate): same bitrate throughout
+   - VBR (Variable Bitrate): varying bitrate based on content complexity
+5. Bit Depth: Number of bits used to represent each color channel of pixel
+  - 8-bit: 256  (2^8) levels per channel, 16.7 million colors
+  - 10-bit: 1024 (2^10) levels per channel, 1.07 billion colors
+  - 12-bit: 4096 (2^12) levels per channel, 68.7 billion colors
+#### DASH (Dynamic Adaptive Streaming over HTTP)
+Server:
+- Divides video file into multiple chunks
+- Each chunk stored and encoded at different bitrate or quality levels (e.g., 720p, 1080p, 4k)
+- **Manifest** file: provides URLs for the different chunks at different quality levels 
+  
+Client: 
