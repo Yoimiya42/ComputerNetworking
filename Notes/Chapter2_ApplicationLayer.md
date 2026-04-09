@@ -1,5 +1,6 @@
 # Chapter 2 Application Layer
 
+<a id="contents"></a>
 ## Contents
 
 - [2.1 Principles of Network Applications](#21-principles-of-network-applications)
@@ -65,6 +66,8 @@ Transport-layer *could* provide in general:
 
 The Internet (TCP/IP networks) actually provides only 1&4, but not 2&3.
 
+[Back to Contents](#contents)
+
 --- 
 
 ## 2.2 The Web and HTTP(Hypertext Transfer Protocol)
@@ -111,6 +114,8 @@ else: # cache hit
         cache -> client:        200 OK + object'x';
 ```
 
+[Back to Contents](#contents)
+
 ---
 
 ## 2.3 Electronic Mail
@@ -129,6 +134,8 @@ The HTTP and IMAP(Internet Message Access Protocol) are used for **retrieving** 
 *Push Protocol*: The side **possesses the data**, **actively sends data** to the other side. The sender is responsible for **delivery**. (e.g., SMTP)
 
 *Pull Protocol*: The side **wants the data**, **sends request to retrieve it**. The receiver is responsible for **retrieval**. (e.g., HTTP, IMAP)
+
+[Back to Contents](#contents)
 
 ---
 
@@ -198,6 +205,8 @@ Both DNS *query* and *reply* messages have the same format:
   - `Recursion Desired`: 1 if the client wants the DNS server to perform recursive query
   - `Recursion Available`: 1 if the DNS server can perform recursive query
 
+[Back to Contents](#contents)
+
 ---
 
 ### 2.5 Peer-to-Peer File Distribution
@@ -230,6 +239,8 @@ A file is divided into many chunks, and the peers exchange those chunks form a t
 Core mechanism:
 1. **Rarest first**: each peer first requests the chunk that is least replicated among its neighbors, so rare chunks spread quickly and do not become a bottleneck.
 2. **tit-for-tat**: each peer prefers to upload to neighbors that are currently uploading to it at the highest rate. which encourages mutual sharing instead of free-riding.  
+
+[Back to Contents](#contents)
 
 ---
   
@@ -269,3 +280,5 @@ Client:
 Two CDN deployment philosophies:
 1. **Enter Deep**: Deploy CDN servers **deep into** many access networks (close to users). e.g., Akamai — thousands of locations. Low delay, high throughput to users, but harder to manage.
 2. **Bring Home**: Fewer, **larger clusters** at key locations (e.g., Internet Exchange Points), "bring" users to them. e.g., Limelight. Easier to manage, slightly higher delay.
+
+[Back to Contents](#contents)
