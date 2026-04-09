@@ -164,7 +164,7 @@ End hosts -> Local DNS: **recursive query** (the local DNS is responsible for qu
 Local DNS -> Other DNS: **iterative query** (the local DNS is told which DNS server to contact next until it reaches the authoritative DNS server and gets the result)
 
 ### DNS Resource Records
-Resource Record (RR) format:
+Reso:
 ```python
 RR = (Name, Value, Type, TTL);
 
