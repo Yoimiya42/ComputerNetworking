@@ -21,4 +21,4 @@ Receiver: reassemble segments into messages, pass to application-layer.
 
 ---
 
-
+## 3.2 Multiplexing and Demultiplexing
