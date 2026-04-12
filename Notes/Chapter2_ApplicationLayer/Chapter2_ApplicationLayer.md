@@ -403,12 +403,11 @@ client_socket.close()
 TCP Server:
 1. create listening socket and bind to port
 2. Listen for incoming connection requests from clients
-   
-*while*:    
-   1. Receive connection request, and create a new connected socket for the client
-   2. Wait to receive request
-   3. Send response
-   4. Close the connected socket
+   *while*:    
+      1. Receive connection request, and create a new connected socket for the client
+      2. Wait to receive request
+      3. Send response
+      4. Close the connected socket
 
 ```python
 from socket import *
