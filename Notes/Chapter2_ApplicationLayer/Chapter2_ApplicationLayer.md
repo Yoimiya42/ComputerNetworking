@@ -27,6 +27,8 @@
     - [DASH (Dynamic Adaptive Streaming over HTTP)](#dash-dynamic-adaptive-streaming-over-http)
     - [CDN (Content Distribution Network)](#cdn-content-distribution-network)
   - [2.7 Socket Programming](#27-socket-programming)
+    - [UDP Socket Programming](#udp-socket-programming)
+    - [TCP Socket Programming](#tcp-socket-programming)
 
 --- 
 
@@ -294,3 +296,70 @@ Two CDN deployment philosophies:
 Network application consists of two programs (a client program and a server program) residing in different end systems. When these two programs are executed, a client process and a server process are created. 
 
 A network application, when running, creates **one or more processes**. Each process can create **one or more sockets**, through which it communicates with processes on other hosts. A socket is typically identified by an IP address and a port number.
+
+### UDP Socket Programming
+Client: 
+1. create socket
+2. create message and send (attach destination address) 
+3. wait to receive response
+4. close
+
+```python
+from socket import *
+
+server_hostname = 'server_hostname'
+server_port = 12000
+server_address = (server_hostname, server_port)
+
+# 1. create a client socket that uses UDP protocol
+client_socket = socket(AF_INET, SOCK_DGRAM)
+    # AF_INET: address family for IPv4
+    # SOCK_DGRAM: socket type for UDP
+
+# 2. create message, and send it to the server_socket via client_socket
+message = input('Input lowercase sentence: ')
+client_socket.sendto(
+    message.encode(), # convert string to bytes, and put them into socket
+    server_address)   # attach destination address
+    # The OS automatically binds the client socket to a port here.
+
+# 3. wait for the server to respond, and receive the modified message and the server's address
+buffer_size = 2048 # indicates the maximum amount of data to be received at once
+message_modified, server_address = client_socket.recvfrom(buffer_size)
+print('From Server: ', message_modified.decode()) # convert bytes to string, and print it
+
+# 4. close the socket
+client_socket.close()
+```
+
+Server: 
+1. create socket and bind to port
+*while*: 
+   1. wait to receive request
+   2. process request and send response
+
+```python
+from socket import *
+
+
+# 1. create a server socket that uses UDP protocol
+server_port = 12000
+server_socket = socket(AF_INET, SOCK_DGRAM)
+server_socket.bind(('', server_port)) 
+    # bind the socket to a port
+    #'' means listen on all network interfaces (equivalent to 0.0.0.0)
+
+buffer_size = 2048
+
+#while loop is used to keep the server running and able to handle multiple client requests sequentially
+while True:
+
+    # 2. wait for a message to arrive from client_socket via server_socket.
+    message, client_address = server_socket.recvfrom(buffer_size)
+    modified_message = message.decode().upper()
+
+    # 3. send the response back
+    server_socket.sendto(modified_message.encode(), client_address) 
+```
+
+### TCP Socket Programming
