@@ -26,6 +26,7 @@
   - [2.6 Video Streaming and CDN (Content Distribution Network)](#26-video-streaming-and-cdn-content-distribution-network)
     - [DASH (Dynamic Adaptive Streaming over HTTP)](#dash-dynamic-adaptive-streaming-over-http)
     - [CDN (Content Distribution Network)](#cdn-content-distribution-network)
+  - [2.7 Socket Programming](#27-socket-programming)
 
 --- 
 
@@ -54,7 +55,7 @@ netstat -ano
 
 
 #### 2. Across Different Hosts
-By exchanging **messages** to/from a **socket**, which is the API between the **application layer** and the **transport layer**. A socket is identified by an **IP address** (which identifies the host) and a **port number** (which identifies the receiving process on the host). ![process_socket](pictures/process_socket.png)
+By exchanging **messages** to/from a **socket**, which is the API between the **application layer** and the **transport layer**. A socket is identified by an **IP address** (which identifies the host) and a **port number** (which identifies the process on the host). ![process_socket](pictures/process_socket.png)
 
 
 The client process initiates communication.  
@@ -286,3 +287,10 @@ Two CDN deployment philosophies:
 2. **Bring Home**: Fewer, **larger clusters** at key locations (e.g., Internet Exchange Points), "bring" users to them. e.g., Limelight. Easier to manage, slightly higher delay.
 
 [Back to Contents](#contents)
+
+
+## 2.7 Socket Programming
+
+Network application consists of two programs (a client program and a server program) residing in different end systems. When these two programs are executed, a client process and a server process are created. These two processes communicate with each by reading from or writing to a **socket**, which is identified by **IP + port number**. 
+
+一个网络应用运行时会创建一个或多个进程。每个进程可以创建一个或多个 socket，通过这些 socket 与其他主机上的进程通信。socket 通常由 IP 地址和端口号来标识；服务器端常把 socket 绑定到某个固定端口上进行监听。
