@@ -1,6 +1,8 @@
 from socket import *
 
-server_hostname = 'server_hostname'
+BUFFER_SIZE = 2048 # indicates the maximum amount of data to be received at once
+
+server_hostname = 'localhost' # 127.0.0.1
 server_port = 12000
 server_address = (server_hostname, server_port)
 
@@ -11,14 +13,12 @@ client_socket = socket(AF_INET, SOCK_DGRAM)
 
 # 2. create message, and send it to the server_socket via client_socket
 message = input('Input lowercase sentence: ')
-client_socket.sendto(
-    message.encode(), # convert string to bytes, and put them into socket
-    server_address)   # attach destination address
+client_socket.sendto(message.encode(), server_address)   
+    # attach destination address
     # The OS automatically binds the client socket to a port here.
 
 # 3. wait for the server to respond, and receive the modified message and the server's address
-buffer_size = 2048 # indicates the maximum amount of data to be received at once
-message_modified, server_address = client_socket.recvfrom(buffer_size)
+message_modified, server_address = client_socket.recvfrom(BUFFER_SIZE)
 print('From Server: ', message_modified.decode()) # convert bytes to string, and print it
 
 # 4. close the socket
