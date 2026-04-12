@@ -67,3 +67,23 @@ The destination socket is identified by: **4-tuple (src IP, src port, dst IP, ds
 ---
 
 ## 3.3 Connectionless Transport: UDP
+UDP (User Datagram Protocol):
+Reference: [RFC 768 - User Datagram Protocol](https://www.rfc-editor.org/rfc/rfc768)
+1. **Connectionless**: no handshakes before sending.
+2. **Unreliable**: no guaranteed delivery, no ordering, no retransmission.
+3. **Best effort**: UDP does provide **no congestion control**, **no flow control**, but it is still widely used for applications that can tolerate loss and do not require ordering, such as streaming media, online gaming, and DNS.
+
+### UDP Segment Format
+
+<img src="./UDP_format.png" width="75%">     
+
+Checksum:
+1. Sum all 16-bit words, wrap overflow back to the least significant bit.
+2. Take the one's complement.
+3. Flip all bits.
+Example: 
+<img src="./checksum.png" width="50%">
+
+--- 
+
+## 3.4 Principles of Reliable Data Transfer
