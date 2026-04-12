@@ -9,7 +9,7 @@ server_socket = socket(AF_INET, SOCK_DGRAM)
 server_socket.bind((server_hostname, server_port)) 
     # bind the socket to a port
 
-#while loop is used to keep the server running and able to handle multiple client requests sequentially
+# while loop is used to keep the server running and able to handle multiple client requests sequentially
 while True:
 
     # 2. Wait for a message to arrive from client_socket via server_socket.

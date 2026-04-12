@@ -307,7 +307,9 @@ Client:
 ```python
 from socket import *
 
-server_hostname = 'server_hostname'
+BUFFER_SIZE = 2048 # indicates the maximum amount of data to be received at once
+
+server_hostname = 'localhost' # 127.0.0.1
 server_port = 12000
 server_address = (server_hostname, server_port)
 
@@ -318,14 +320,12 @@ client_socket = socket(AF_INET, SOCK_DGRAM)
 
 # 2. create message, and send it to the server_socket via client_socket
 message = input('Input lowercase sentence: ')
-client_socket.sendto(
-    message.encode(), # convert string to bytes, and put them into socket
-    server_address)   # attach destination address
+client_socket.sendto(message.encode(), server_address)   
+    # attach destination address
     # The OS automatically binds the client socket to a port here.
 
 # 3. wait for the server to respond, and receive the modified message and the server's address
-buffer_size = 2048 # indicates the maximum amount of data to be received at once
-message_modified, server_address = client_socket.recvfrom(buffer_size)
+message_modified, server_address = client_socket.recvfrom(BUFFER_SIZE)
 print('From Server: ', message_modified.decode()) # convert bytes to string, and print it
 
 # 4. close the socket
@@ -341,24 +341,23 @@ Server:
 ```python
 from socket import *
 
+BUFFER_SIZE = 2048 # indicates the maximum amount of data to be received at once
 
-# 1. create a server socket that uses UDP protocol
+# 1. Create a server socket that uses UDP protocol.
+server_hostname = ''  #'' means listen on all network interfaces (equivalent to 0.0.0.0)
 server_port = 12000
 server_socket = socket(AF_INET, SOCK_DGRAM)
-server_socket.bind(('', server_port)) 
+server_socket.bind((server_hostname, server_port)) 
     # bind the socket to a port
-    #'' means listen on all network interfaces (equivalent to 0.0.0.0)
 
-buffer_size = 2048
-
-#while loop is used to keep the server running and able to handle multiple client requests sequentially
+# while loop is used to keep the server running and able to handle multiple client requests sequentially
 while True:
 
-    # 2. wait for a message to arrive from client_socket via server_socket.
-    message, client_address = server_socket.recvfrom(buffer_size)
+    # 2. Wait for a message to arrive from client_socket via server_socket.
+    message, client_address = server_socket.recvfrom(BUFFER_SIZE)
     modified_message = message.decode().upper()
 
-    # 3. send the response back
+    # 3. Send the response back.
     server_socket.sendto(modified_message.encode(), client_address) 
 ```
 
