@@ -333,10 +333,10 @@ client_socket.close()
 ```
 
 Server: 
-1. create socket and bind to port
+1. create socket and bind to port     
 *while*: 
-   1. wait to receive request
-   2. process request and send response
+   2. wait to receive request
+   3. process request and send response
 
 ```python
 from socket import *
