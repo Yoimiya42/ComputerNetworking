@@ -9,7 +9,7 @@ listen_socket = socket(AF_INET, SOCK_STREAM)
 listen_socket.bind((server_hostname, server_port))
     # bind the socket to a port
 
-# 2. Wait for incoming connection requests from clients.
+# 2. Listen for incoming connection requests from clients.
 backlog = 1 # the maximum number of queued connections
 listen_socket.listen(backlog)
 

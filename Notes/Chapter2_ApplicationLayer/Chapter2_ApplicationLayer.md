@@ -337,7 +337,7 @@ UDP Server:
 1. create socket and bind to port     
 *while*:      
    2. wait to receive request   
-   3. process request and send response
+   3. send response
 
 ```python
 from socket import *
@@ -398,4 +398,45 @@ print('From Server: ', modified_sentence)
 
 # 5. Close the socket.
 client_socket.close()
+```
+
+TCP Server:
+1. create listening socket and bind to port
+2. Listen for incoming connection requests from clients
+   
+*while*:    
+   1. Receive connection request, and create a new connected socket for the client
+   2. Wait to receive request
+   3. Send response
+   4. Close the connected socket
+
+```python
+from socket import *
+
+BUFFER_SIZE = 2048
+
+# 1. Create a listening TCP server socket.
+server_hostname = ''
+server_port = 12000
+listen_socket = socket(AF_INET, SOCK_STREAM)
+listen_socket.bind((server_hostname, server_port))
+    # bind the socket to a port
+
+# 2. Listen for incoming connection requests from clients.
+backlog = 1 # the maximum number of queued connections
+listen_socket.listen(backlog)
+
+while True:
+    # 3. Receive a connection request, and create a dedicated TCP socket to this particular client.
+    connection_socket, client_address = listen_socket.accept()
+
+    # 4. Wait for a request from client_socket via connection_socket.
+    sentence = connection_socket.recv(BUFFER_SIZE).decode()
+    modified_sentence = sentence.upper()
+
+    # 5. Send the response back.
+    connection_socket.send(modified_sentence.encode())
+
+    # 6. Close the connection socket.
+    connection_socket.close()
 ```
