@@ -334,8 +334,8 @@ client_socket.close()
 
 Server: 
 1. create socket and bind to port     
-*while*: 
-   2. wait to receive request
+*while*:      
+   2. wait to receive request   
    3. process request and send response
 
 ```python
