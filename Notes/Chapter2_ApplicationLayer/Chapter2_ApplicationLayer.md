@@ -294,6 +294,3 @@ Two CDN deployment philosophies:
 Network application consists of two programs (a client program and a server program) residing in different end systems. When these two programs are executed, a client process and a server process are created. 
 
 A network application, when running, creates **one or more processes**. Each process can create **one or more sockets**, through which it communicates with processes on other hosts. A socket is typically identified by an IP address and a port number.
-
-
-
