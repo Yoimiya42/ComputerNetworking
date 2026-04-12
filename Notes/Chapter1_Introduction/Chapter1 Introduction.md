@@ -100,7 +100,7 @@ $$\text{Transmission delay} = \frac{L \; (\text{packet length in bits})}{R \; (\
 
 **Propagation delay**: time to propagate bits from the beginning of the link to the router.
 $$\text{Propagation delay} = \frac{d \; (\text{length of physical link})}{s \; (\text{propagation speed} \approx 2 \times 10^8 \text{ m/s})}$$
-![delay](pictures/delay.png)
+![delay](delay.png)
 total nodal delay:
 $$d_{nodal} = d_{proc} + d_{queue} + d_{trans} + d_{prop}$$
 
@@ -109,7 +109,7 @@ a = average rate at which packets arrive at the queue (packets/sec)
 L = packet length (bits)
 
 $$\text{Traffic intensity} = \frac{La}{R}$$
-![traffic intensity](pictures/traffic_intensity.png)
+![traffic intensity](traffic_intensity.png)
 
 La/R ~ 0: average queueing delay is small.
 La/R ~ 1: average queueing delay gets larger and larger.
@@ -145,4 +145,4 @@ rate at which bits transferred between sender/receiver
 **Physical**: 0/1s -> real signals
   - e.g. fiber optic, copper wire, radio
 
-<img src="pictures/five_layers.jpg" width="75%" />
+<img src="five_layers.jpg" width="75%" />
