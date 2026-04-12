@@ -291,6 +291,9 @@ Two CDN deployment philosophies:
 
 ## 2.7 Socket Programming
 
-Network application consists of two programs (a client program and a server program) residing in different end systems. When these two programs are executed, a client process and a server process are created. These two processes communicate with each by reading from or writing to a **socket**, which is identified by **IP + port number**. 
+Network application consists of two programs (a client program and a server program) residing in different end systems. When these two programs are executed, a client process and a server process are created. 
 
-一个网络应用运行时会创建一个或多个进程。每个进程可以创建一个或多个 socket，通过这些 socket 与其他主机上的进程通信。socket 通常由 IP 地址和端口号来标识；服务器端常把 socket 绑定到某个固定端口上进行监听。
+A network application, when running, creates **one or more processes**. Each process can create **one or more sockets**, through which it communicates with processes on other hosts. A socket is typically identified by an IP address and a port number.
+
+
+
