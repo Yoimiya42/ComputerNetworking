@@ -16,7 +16,7 @@ The transport layer provides **logical communication** between **processes** run
 **UDP (User Datagram Protocol)**
 
 - Unreliable, unordered delivery
-- A minimal, no-frills transport-layer protocol
+- A minimal, best-effort service
 
 On the sender side, the transport layer breaks application messages into **segments** and passes them to the network layer as **datagrams**. On the receiver side, it reassembles segments into messages and passes them to the application layer.
 
@@ -120,7 +120,15 @@ Core mechanisms for reliable data transfer implemented by TCP:
 ## TCP Segment Format (3.5.2)
 
 ## RTT Estimation and Timeout (3.5.3)
-
+**Sample RTT**: measured from segment transmission to ACK receipt.
+**Estimated RTT**: smoothed RTT estimate using exponential weighted moving average (EWMA).
+$$ \text{Estimated RTT} = (1 - \alpha) \times \text{Estimated RTT} + \alpha \times \text{Sample RTT},  \alpha = 0.125 $$
+**DevRTT**: estimate of how much $\text{Sample RTT}$ varies from $\text{Estimated RTT}$.
+$$\text{DevRTT}= (1 - \beta) \times \text{DevRTT} + \beta \times |\text{Sample RTT} - \text{Estimated RTT}|, \beta = 0.25 $$
+**Timeout Interval**:
+$$ \text{Timeout Interval} = \text {Estimated RTT} + 4\text{DevRtt} $$
+ - Initial timeout is 1 sec; after a timeout. TCP **doubles** the timeout interval temporarily.
+ - $\text{Timeout Interval}$ will compute again as $\text{Estimated RTT}$ updates.
 ## TCP Flow Control (3.5.5)
 
 ## Connection-oriented Transport: TCP  (3.5.6)
