@@ -88,8 +88,11 @@ Example:
 
 # Transport-Layer Protocols (TCP)
 
+## TCP Segment Format (3.5.2)
 
-## 3.4 Reliable Data Transfer
+## RTT Estimation and Timeout (3.5.3)
+
+## Reliable Data Transfer (3.4 & 3.5.4)
 Core Mechanisms for Reliable Data Transfer (implemented by TCP):
 1. **Error Detection (Checksum)**: 
  TCP checksum sums in 16-bit words with overflow wrapped around, take the one's complement, including:
@@ -101,13 +104,17 @@ Core Mechanisms for Reliable Data Transfer (implemented by TCP):
   TCP treats data as a continuous **byte stream**   
   - Sequence number: the position of the **first byte of payload**, start from ISN (Initial Sequence Number)
   - Acknowledgement number (cumulative): ACK N means the receiver has received all bytes up to N-1, and is expecting bytes starting from N.
-  - Both fields appear in every segment, enabling full-duplex and piggybacking.
+  - Both sides can send data and acknowledgements in the same segment, enabling full-duplex and piggybacking .
   This mechanism solves three problems: 
     1) detecting duplicate (same seq -> discard), 
     2) handling out-of-order arrival (buffer and wait for missing segments), 
     3) handling lost segments (sender fast retransmit or retransmission after timeout).
 3. **Fast Retransmit**: if the sender receives 3 duplicate ACKs. it assumes the segment is lost and retransmits it immediately, without waiting for the timeout.
 4. **Timer + Retransmission**: keep a timer for the oldest unacknowledged segment. If the timer expires, retransmit the segment and restart the timer.
-5. **Pipeline**: multiple unacknowledged segments can be in flight at the same time, improving bandwidth utilization and throughput.
-   
-## 3.5 Connection-oriented Transport
+5. **Pipeline**: multiple unacknowledged segments can be in flight at the same time, improving bandwidth utilization and throughput. The amount of outstanding data is limited by ``flow control`` and `congestion control`.
+  
+## TCP Flow Control (3.5.5)
+
+## Connection-oriented Transport: TCP  (3.5.6)
+
+## TCP Congestion Control (3.6 & 3.7)
