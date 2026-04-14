@@ -65,6 +65,7 @@ The destination socket is identified by: **4-tuple (src IP, src port, dst IP, ds
 <img src="./TCP_demultiplexing.png" alt="TCP demultiplexing" width="60%">
 
 ---
+# User Datagram Protocol (UDP)
 
 ## 3.3 Connectionless Transport: UDP
 UDP (User Datagram Protocol):
@@ -79,11 +80,34 @@ Reference: [RFC 768 - User Datagram Protocol](https://www.rfc-editor.org/rfc/rfc
 
 Checksum:
 1. Sum all 16-bit words, wrap overflow back to the least significant bit.
-2. Take the one's complement.
-3. Flip all bits.
+2. Take the one's complement (flip all bits).
 Example: 
 <img src="./checksum.png" width="50%">
 
 --- 
 
-## 3.4 Principles of Reliable Data Transfer
+# Transport-Layer Protocols (TCP)
+
+
+## 3.4 Reliable Data Transfer
+Core Mechanisms for Reliable Data Transfer (implemented by TCP):
+1. **Error Detection (Checksum)**: 
+ TCP checksum sums in 16-bit words with overflow wrapped around, take the one's complement, including:
+    - `Presudo Header` (src/det IP, protocol type, tcp segment length), participating in calculation but not transmitted.
+    - `TCP Segment Header`
+    - `TCP Segment Payload`
+ Checksum is used to detect only but not correct bit corruptions. Receiver sums up above three fields with the checksum received. if the result is not 111..111 (all 1s), the segment is corrupted and is discarded.
+2. **Sequence Numbers + Acknowledgements**:
+  TCP treats data as a continuous **byte stream**   
+  - Sequence number: the position of the **first byte of payload**, start from ISN (Initial Sequence Number)
+  - Acknowledgement number (cumulative): ACK N means the receiver has received all bytes up to N-1, and is expecting bytes starting from N.
+  - Both fields appear in every segment, enabling full-duplex and piggybacking.
+  This mechanism solves three problems: 
+    1) detecting duplicate (same seq -> discard), 
+    2) handling out-of-order arrival (buffer and wait for missing segments), 
+    3) handling lost segments (sender fast retransmit or retransmission after timeout).
+3. **Fast Retransmit**: if the sender receives 3 duplicate ACKs. it assumes the segment is lost and retransmits it immediately, without waiting for the timeout.
+4. **Timer + Retransmission**: keep a timer for the oldest unacknowledged segment. If the timer expires, retransmit the segment and restart the timer.
+5. **Pipeline**: multiple unacknowledged segments can be in flight at the same time, improving bandwidth utilization and throughput.
+   
+## 3.5 Connection-oriented Transport
