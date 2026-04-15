@@ -4,30 +4,31 @@
 ## Contents
 
 - [Chapter 3 Transport Layer](#chapter-3-transport-layer)
+  - [Contents](#contents)
   - [3.1 Introduction and Transport-Layer Services](#31-introduction-and-transport-layer-services)
-    - [Transport-layer Protocols: TCP vs UDP](#transport-layer-protocols-tcp-vs-udp)
+    - [Transport-layer Protocols TCP vs UDP](#transport-layer-protocols-tcp-vs-udp)
   - [3.2 Multiplexing and Demultiplexing](#32-multiplexing-and-demultiplexing)
-    - [Multiplexing (Sender):](#multiplexing-sender)
-    - [UDP Demultiplexing (Receiver):](#udp-demultiplexing-receiver)
-    - [TCP Demultiplexing (Receiver):](#tcp-demultiplexing-receiver)
+    - [Multiplexing (Sender)](#multiplexing-sender)
+    - [UDP Demultiplexing (Receiver)](#udp-demultiplexing-receiver)
+    - [TCP Demultiplexing (Receiver)](#tcp-demultiplexing-receiver)
 - [User Datagram Protocol (UDP)](#user-datagram-protocol-udp)
-  - [3.3 Connectionless Transport: UDP](#33-connectionless-transport-udp)
+  - [3.3 Connectionless Transport UDP](#33-connectionless-transport-udp)
     - [UDP Segment Format](#udp-segment-format)
-    - [Checksum:](#checksum)
-- [Transport-Layer Protocols (TCP)](#transport-layer-protocols-tcp)
-  - [Reliable Data Transfer (3.4 & 3.5.4)](#reliable-data-transfer-34--354)
+    - [Checksum](#checksum)
+- [Transmission Control Protocol (TCP)](#transmission-control-protocol-tcp)
+  - [Reliable Data Transfer (3.4 \& 3.5.4)](#reliable-data-transfer-34--354)
   - [TCP Segment Format (3.5.2)](#tcp-segment-format-352)
   - [RTT Estimation and Timeout (3.5.3)](#rtt-estimation-and-timeout-353)
   - [TCP Flow Control (3.5.5)](#tcp-flow-control-355)
-  - [Connection-oriented Transport: TCP  (3.5.6)](#connection-oriented-transport-tcp--356)
-    - [Establish TCP connection: Three-way Handshake:](#establish-tcp-connection-three-way-handshake)
-    - [Close TCP Connection:](#close-tcp-connection)
-  - [TCP Congestion Control (3.6 & 3.7)](#tcp-congestion-control-36--37)
-    - [End-to-End Congestion Control (TCP Implementation):](#end-to-end-congestion-control-tcp-implementation)
-      - [1. Loss-based Congestion Control:](#1-loss-based-congestion-control)
-      - [2. Delay-based Congestion Control:](#2-delay-based-congestion-control)
-    - [Network-Assisted Congestion Control:](#network-assisted-congestion-control)
-      - [Explicit Congestion Notification (ECN) — RFC 3168](#explicit-congestion-notification-ecn--rfc-3168)
+  - [Connection-oriented Transport TCP  (3.5.6)](#connection-oriented-transport-tcp--356)
+    - [Establish TCP connection Three-way Handshake](#establish-tcp-connection-three-way-handshake)
+    - [Close TCP Connection](#close-tcp-connection)
+  - [TCP Congestion Control (3.6 \& 3.7)](#tcp-congestion-control-36--37)
+    - [End-to-End Congestion Control (TCP Implementation)](#end-to-end-congestion-control-tcp-implementation)
+      - [1. Loss-based Congestion Control](#1-loss-based-congestion-control)
+      - [2. Delay-based Congestion Control](#2-delay-based-congestion-control)
+    - [Network-Assisted Congestion Control](#network-assisted-congestion-control)
+      - [Explicit Congestion Notification (ECN)](#explicit-congestion-notification-ecn)
 
 ---
 
@@ -35,7 +36,7 @@
 
 The transport layer provides **logical communication** between **processes** running on different hosts, whereas the network layer provides logical communication between **hosts**.
 
-### Transport-layer Protocols: TCP vs UDP
+### Transport-layer Protocols TCP vs UDP
 
 **TCP (Transmission Control Protocol)**
 
@@ -55,7 +56,7 @@ On the sender side, the transport layer breaks application messages into **segme
 
 ## 3.2 Multiplexing and Demultiplexing
 
-### Multiplexing (Sender):
+### Multiplexing (Sender)
 
 1. Each process passes its message through its own socket.
 2. The transport layer wraps each message into a **segment**, attaching the **source port** and **destination port** in the header.
@@ -63,7 +64,7 @@ On the sender side, the transport layer breaks application messages into **segme
 
 <img src="./Multiplexing.png" alt="Multiplexing" width="60%">
 
-### UDP Demultiplexing (Receiver):
+### UDP Demultiplexing (Receiver)
 
 The destination socket is identified by the **2-tuple (dst IP, dst port)**.
 
@@ -76,7 +77,7 @@ Segments with different source IP/port pairs but the same destination IP/port ar
 
 <img src="./UDP_demultiplexing.png" alt="UDP demultiplexing" width="60%">
 
-### TCP Demultiplexing (Receiver):
+### TCP Demultiplexing (Receiver)
 
 The destination socket is identified by the **4-tuple (src IP, src port, dst IP, dst port)**.
 
@@ -97,7 +98,7 @@ The destination socket is identified by the **4-tuple (src IP, src port, dst IP,
 
 # User Datagram Protocol (UDP)
 
-## 3.3 Connectionless Transport: UDP
+## 3.3 Connectionless Transport UDP
 
 **UDP (User Datagram Protocol)**  
 Reference: [RFC 768 - User Datagram Protocol](https://www.rfc-editor.org/rfc/rfc768)
@@ -110,7 +111,7 @@ Reference: [RFC 768 - User Datagram Protocol](https://www.rfc-editor.org/rfc/rfc
 
 <img src="./UDP_format.png" alt="UDP segment format" width="75%">
 
-### Checksum:
+### Checksum
 
 1. Sum all 16-bit words and wrap any overflow back to the least significant bit.
 2. Take the one's complement (flip all bits).
@@ -121,7 +122,7 @@ Example:
 
 --- 
 
-# Transport-Layer Protocols (TCP)
+# Transmission Control Protocol (TCP)
 
 ## Reliable Data Transfer (3.4 & 3.5.4)
 
@@ -172,19 +173,19 @@ $$ \text{rwnd = \text{ReceiveBuffer} - \text{DataInBuffer}}$$
 
 The receiver advertises its available buffer space through the TCP `receive window` field, and the sender limits how much unacknowledged data it keeps in flight accordingly.
 
-## Connection-oriented Transport: TCP  (3.5.6)
+## Connection-oriented Transport TCP  (3.5.6)
 
-### Establish TCP connection: Three-way Handshake:
+### Establish TCP connection Three-way Handshake
 <img src="./three-way_handshakes.jpg"  width="60%">
 
 
-### Close TCP Connection:
+### Close TCP Connection
 <img src="./close_connection.jpg"  width="60%">
 
 ## TCP Congestion Control (3.6 & 3.7)
 
 Classification based on whether the network-layer provides **explicit feedback**:
-### End-to-End Congestion Control (TCP Implementation):
+### End-to-End Congestion Control (TCP Implementation)
 The network-layer does not provide explicit feedback, the hosts themselves must detect congestion or probe bandwidth through:
  - Timeout -> severe congestion
  - Triple duplicate ACKs -> mild congestion -> fast retransmit
@@ -198,7 +199,7 @@ $$ \text{LastSentByte} - \text{LastByteAcked} \leq \min(\text{cwnd}, \text{rwnd}
 Core Mechanism: **Additive Increase/ Multiplicative Decrease (AIMD)**
 - Linear (additive) increase in `cwnd` of `1 MSS/RTT` when no congestion.
 - Halve (multiplicate) decrease of `cwnd` on congestion detection (timeout or triple duplicate ACKs)
-#### 1. Loss-based Congestion Control:
+#### 1. Loss-based Congestion Control
 Maximum Segment Size (MSS): the largest segment size that can be sent in a single TCP segment, typically around **1460** bytes
 
 Three Phases of TCP Congestion Control:
@@ -217,7 +218,7 @@ Events:
 <img src="./tcp_cwnd.png"  width="45%"> <img src="./tcp_cubic.png"  width="45%">
 
 
-#### 2. Delay-based Congestion Control:
+#### 2. Delay-based Congestion Control
 
 Instead of waiting for packet loss, delay-based approaches detect congestion early by monitoring **RTT increase** as an indicator of growing queue lengths.
 
@@ -233,11 +234,11 @@ $$\text{Uncongested Throughput} = \frac{\text{cwnd}}{RTT_{min}}$$
 
 ---
 
-### Network-Assisted Congestion Control:
+### Network-Assisted Congestion Control
 
 The network layer provides **explicit feedback** to help end systems detect and respond to congestion more precisely and proactively.
 
-#### Explicit Congestion Notification (ECN) — RFC 3168
+#### Explicit Congestion Notification (ECN)
 
 ECN uses **2 bits** in the IP datagram header (Type of Service field), giving 4 possible values:
 
@@ -263,4 +264,3 @@ Sender receives ECE:
 **Key properties:**
 - Congestion is signaled **before** packets are dropped — earlier and less disruptive than loss-based detection.
 - Requires support from both endpoints **and** intermediate routers.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
