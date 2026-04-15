@@ -118,13 +118,16 @@ Core mechanisms for reliable data transfer implemented by TCP:
 5. **Pipelining**: Multiple unacknowledged segments can be in flight at the same time, improving bandwidth utilization and throughput. The amount of outstanding data is limited by `flow control` and `congestion control`.
 
 ## TCP Segment Format (3.5.2)
+<img src="./tcp_format.jpg" width="55%">
+<img src="./tcp_format2.png" width="40%">
+
 
 ## RTT Estimation and Timeout (3.5.3)
 **Sample RTT**: measured from segment transmission to ACK receipt.
 **Estimated RTT**: smoothed RTT estimate using exponential weighted moving average (EWMA).
 $$ \text{Estimated RTT} = (1 - \alpha) \times \text{Estimated RTT} + \alpha \times \text{Sample RTT},  \alpha = 0.125 $$
 **DevRTT**: estimate of how much $\text{Sample RTT}$ varies from $\text{Estimated RTT}$.
-$$\text{DevRTT}= (1 - \beta) \times \text{DevRTT} + \beta \times |\text{Sample RTT} - \text{Estimated RTT}|, \beta = 0.25 $$
+$$\text{DevRTT}= (1 - \beta) \times \text{DevRTT} + \beta \times |\text{Sample RTT} - \text{Estimated RTT}|, \beta = 0.25 $$ 
 **Timeout Interval**:
 $$ \text{Timeout Interval} = \text {Estimated RTT} + 4\text{DevRtt} $$
  - Initial timeout is 1 sec; after a timeout. TCP **doubles** the timeout interval temporarily.
