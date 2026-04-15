@@ -1,5 +1,36 @@
 # Chapter 3 Transport Layer
 
+<a id="contents"></a>
+## Contents
+
+- [Chapter 3 Transport Layer](#chapter-3-transport-layer)
+  - [3.1 Introduction and Transport-Layer Services](#31-introduction-and-transport-layer-services)
+    - [Transport-layer Protocols: TCP vs UDP](#transport-layer-protocols-tcp-vs-udp)
+  - [3.2 Multiplexing and Demultiplexing](#32-multiplexing-and-demultiplexing)
+    - [Multiplexing (Sender):](#multiplexing-sender)
+    - [UDP Demultiplexing (Receiver):](#udp-demultiplexing-receiver)
+    - [TCP Demultiplexing (Receiver):](#tcp-demultiplexing-receiver)
+- [User Datagram Protocol (UDP)](#user-datagram-protocol-udp)
+  - [3.3 Connectionless Transport: UDP](#33-connectionless-transport-udp)
+    - [UDP Segment Format](#udp-segment-format)
+    - [Checksum:](#checksum)
+- [Transport-Layer Protocols (TCP)](#transport-layer-protocols-tcp)
+  - [Reliable Data Transfer (3.4 & 3.5.4)](#reliable-data-transfer-34--354)
+  - [TCP Segment Format (3.5.2)](#tcp-segment-format-352)
+  - [RTT Estimation and Timeout (3.5.3)](#rtt-estimation-and-timeout-353)
+  - [TCP Flow Control (3.5.5)](#tcp-flow-control-355)
+  - [Connection-oriented Transport: TCP  (3.5.6)](#connection-oriented-transport-tcp--356)
+    - [Establish TCP connection: Three-way Handshake:](#establish-tcp-connection-three-way-handshake)
+    - [Close TCP Connection:](#close-tcp-connection)
+  - [TCP Congestion Control (3.6 & 3.7)](#tcp-congestion-control-36--37)
+    - [End-to-End Congestion Control (TCP Implementation):](#end-to-end-congestion-control-tcp-implementation)
+      - [1. Loss-based Congestion Control:](#1-loss-based-congestion-control)
+      - [2. Delay-based Congestion Control:](#2-delay-based-congestion-control)
+    - [Network-Assisted Congestion Control:](#network-assisted-congestion-control)
+      - [Explicit Congestion Notification (ECN) — RFC 3168](#explicit-congestion-notification-ecn--rfc-3168)
+
+---
+
 ## 3.1 Introduction and Transport-Layer Services
 
 The transport layer provides **logical communication** between **processes** running on different hosts, whereas the network layer provides logical communication between **hosts**.
@@ -232,3 +263,4 @@ Sender receives ECE:
 **Key properties:**
 - Congestion is signaled **before** packets are dropped — earlier and less disruptive than loss-based detection.
 - Requires support from both endpoints **and** intermediate routers.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
