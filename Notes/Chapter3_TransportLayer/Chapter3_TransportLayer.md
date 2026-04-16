@@ -115,6 +115,8 @@ Reference: [RFC 768 - User Datagram Protocol](https://www.rfc-editor.org/rfc/rfc
 
 <img src="./UDP_format.png" alt="UDP segment format" width="75%">
 
+Length: UDP Header (8 bytes) + Data Payload
+
 ### Checksum
 
 1. Sum all 16-bit words and wrap any overflow back to the least significant bit.
@@ -237,9 +239,9 @@ Instead of waiting for packet loss, delay-based approaches detect congestion ear
 
 **Key Idea:** Measure $RTT_{min}$ — the minimum observed RTT, which approximates the uncongested propagation delay. The estimated uncongested throughput is:
 $$\text{Uncongested Throughput} = \frac{\text{cwnd}}{RTT_{min}}$$
-
-- If $ \text{actual throughput} \approx \dfrac{\text{cwnd}}{RTT_{min}} $ → path is **uncongested** → increase `cwnd`
-- If $ \text{actual throughput} \ll \dfrac{\text{cwnd}}{RTT_{min}} $ → **congestion building** → decrease `cwnd`
+ 
+- If $ \text{actual throughput} \approx \frac{\text{cwnd}}{RTT_{min}} $ → path is **uncongested** → increase `cwnd`
+- If $ \text{actual throughput} \ll \frac{\text{cwnd}}{RTT_{min}} $ → **congestion building** → decrease `cwnd`
 
 **TCP Vegas:**
 - Proactively reduces `cwnd` when delay rises, before any packet is dropped.
