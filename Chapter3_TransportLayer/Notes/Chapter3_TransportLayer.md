@@ -64,7 +64,7 @@ On the sender side, the transport layer breaks application messages into **segme
 2. The transport layer wraps each message into a **segment**, attaching the **source port** and **destination port** in the header.
 3. Each segment is passed to the network layer, which encapsulates it into an **IP datagram** and sends it to the destination.
 
-<img src="./Multiplexing.png" alt="Multiplexing" width="60%">
+<img src="../Pictures/Multiplexing.png" alt="Multiplexing" width="60%">
 
 ### UDP Demultiplexing (Receiver)
 
@@ -77,7 +77,7 @@ The destination socket is identified by the **2-tuple (dst IP, dst port)**.
 
 Segments with different source IP/port pairs but the same destination IP/port are delivered to the same socket.
 
-<img src="./UDP_demultiplexing.png" alt="UDP demultiplexing" width="60%">
+<img src="../Pictures/UDP_demultiplexing.png" alt="UDP demultiplexing" width="60%">
 
 ### TCP Demultiplexing (Receiver)
 
@@ -94,7 +94,7 @@ The destination socket is identified by the **4-tuple (src IP, src port, dst IP,
      - deliver it to the matching connection socket
 4. The process calls `recv()` to retrieve the data.
 
-<img src="./TCP_demultiplexing.png" alt="TCP demultiplexing" width="60%">
+<img src="../Pictures/TCP_demultiplexing.png" alt="TCP demultiplexing" width="60%">
 
 [Back to Contents](#contents)
 
@@ -113,7 +113,7 @@ Reference: [RFC 768 - User Datagram Protocol](https://www.rfc-editor.org/rfc/rfc
 
 ### UDP Segment Format
 
-<img src="./UDP_format.png" alt="UDP segment format" width="75%">
+<img src="../Pictures/UDP_format.png" alt="UDP segment format" width="75%">
 
 Length: UDP Header (8 bytes) + Data Payload
 
@@ -124,7 +124,7 @@ Length: UDP Header (8 bytes) + Data Payload
 
 Example:
 
-<img src="./checksum.png" alt="Checksum example" width="50%">
+<img src="../Pictures/checksum.png" alt="Checksum example" width="50%">
 
 [Back to Contents](#contents)
 
@@ -159,8 +159,8 @@ Core mechanisms for reliable data transfer implemented by TCP:
 
 ## TCP Segment Format (3.5.2)
 
-<img src="./tcp_format.jpg" alt="TCP segment format overview" width="55%">
-<img src="./tcp_format2.png" alt="TCP segment header fields" width="40%">
+<img src="../Pictures/tcp_format.jpg" alt="TCP segment format overview" width="55%">
+<img src="../Pictures/tcp_format2.png" alt="TCP segment header fields" width="40%">
 
 [Back to Contents](#contents)
 
@@ -186,7 +186,7 @@ $$ \text{Timeout Interval} = \text {Estimated RTT} + 4\text{DevRtt} $$
 
 ## TCP Flow Control (3.5.5)
 
-<img src="./receive_window.png" alt="TCP receive window" width="50%">
+<img src="../Pictures/receive_window.png" alt="TCP receive window" width="50%">
 
 $$ \text{LastByteReceived} - \text{LastByteRead} = \text{DataInBuffer} \leq \text{ReceiveBuffer} $$
 
@@ -198,11 +198,11 @@ The receiver advertises its available buffer space through the TCP `receive wind
 
 ### Establish TCP connection Three-way Handshake
 
-<img src="./three-way_handshakes.jpg" alt="TCP three-way handshake" width="60%">
+<img src="../Pictures/three-way_handshakes.jpg" alt="TCP three-way handshake" width="60%">
 
 ### Close TCP Connection
 
-<img src="./close_connection.jpg" alt="TCP connection close" width="60%">
+<img src="../Pictures/close_connection.jpg" alt="TCP connection close" width="60%">
 
 [Back to Contents](#contents)
 
@@ -249,7 +249,7 @@ Events:
 - **Timeout**: `ssthresh = cwnd / 2`, `cwnd = 1 MSS`
 - **Triple duplicate ACKs**: `ssthresh = cwnd / 2`, `cwnd = ssthresh + 3 MSS`
 
-<img src="./tcp_cwnd.png" alt="TCP congestion window growth" width="45%"> <img src="./tcp_cubic.png" alt="TCP Cubic congestion window growth" width="45%">
+<img src="../Pictures/tcp_cwnd.png" alt="TCP congestion window growth" width="45%"> <img src="../Pictures/tcp_cubic.png" alt="TCP Cubic congestion window growth" width="45%">
 
 #### 2. Delay-based Congestion Control
 

@@ -112,7 +112,7 @@ $$\text{Transmission delay} = \frac{L \; (\text{packet length in bits})}{R \; (\
 
 $$\text{Propagation delay} = \frac{d \; (\text{length of physical link})}{s \; (\text{propagation speed} \approx 2 \times 10^8 \text{ m/s})}$$
 
-![delay](delay.png)
+![delay](../Pictures/delay.png)
 
 The total nodal delay is:
 
@@ -124,7 +124,7 @@ $$d_{nodal} = d_{proc} + d_{queue} + d_{trans} + d_{prop}$$
 
 $$\text{Traffic intensity} = \frac{La}{R}$$
 
-![traffic intensity](traffic_intensity.png)
+![traffic intensity](../Pictures/traffic_intensity.png)
 
 - If `La/R ≈ 0`, the average queueing delay is small.
 - If `La/R ≈ 1`, the average queueing delay becomes larger and larger.
@@ -159,4 +159,4 @@ $$\min\{R_1, R_2, \ldots, R_n\}$$
 - **Physical:** converts 0s and 1s into actual signals
   - Examples: fiber optics, copper wire, radio
 
-<img src="five_layers.jpg" width="75%" />
+<img src="../Pictures/five_layers.jpg" width="75%" />
