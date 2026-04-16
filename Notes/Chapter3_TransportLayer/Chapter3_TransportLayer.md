@@ -237,11 +237,11 @@ Events:
 
 Instead of waiting for packet loss, delay-based approaches detect congestion early by monitoring **RTT increase** as an indicator of growing queue lengths.
 
-**Key Idea:** Measure $RTT_{min}$ — the minimum observed RTT, which approximates the uncongested propagation delay. The estimated uncongested throughput is:
-$$\text{Uncongested Throughput} = \frac{\text{cwnd}}{RTT_{min}}$$
+**Key Idea:** Measure $RTT_{min}$ — the minimum observed RTT, which approximates the uncongested propagation delay. The estimated uncongested throughput is:   
+$$ \text{Uncongested Throughput} = \frac{\text{cwnd}}{RTT_{min}} $$
  
-- If $ \text{actual throughput} \approx \frac{\text{cwnd}}{RTT_{min}} $ → path is **uncongested** → increase `cwnd`
-- If $ \text{actual throughput} \ll \frac{\text{cwnd}}{RTT_{min}} $ → **congestion building** → decrease `cwnd`
+- If $\text{actual throughput} \approx \frac{\text{cwnd}}{RTT_{min}}$ → path is **uncongested** → increase `cwnd`
+- If $\text{actual throughput} \ll \frac{\text{cwnd}}{RTT_{min}}$ → **congestion building** → decrease `cwnd`
 
 **TCP Vegas:**
 - Proactively reduces `cwnd` when delay rises, before any packet is dropped.
