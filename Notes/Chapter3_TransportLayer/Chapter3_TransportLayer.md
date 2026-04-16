@@ -237,7 +237,8 @@ Events:
 
 Instead of waiting for packet loss, delay-based approaches detect congestion early by monitoring **RTT increase** as an indicator of growing queue lengths.
 
-**Key Idea:** Measure $RTT_{min}$ — the minimum observed RTT, which approximates the uncongested propagation delay. The estimated uncongested throughput is:   
+**Key Idea:** Measure $RTT_{min}$ — the minimum observed RTT, which approximates the uncongested propagation delay. The estimated uncongested throughput is:  
+ 
 $$ \text{Uncongested Throughput} = \frac{\text{cwnd}}{RTT_{min}} $$
  
 - If $\text{actual throughput} \approx \frac{\text{cwnd}}{RTT_{min}}$ → path is **uncongested** → increase `cwnd`
