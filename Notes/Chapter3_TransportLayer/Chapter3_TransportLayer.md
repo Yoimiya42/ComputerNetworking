@@ -104,7 +104,7 @@ The destination socket is identified by the **4-tuple (src IP, src port, dst IP,
 
 ## 3.3 Connectionless Transport UDP
 
-**UDP (User Datagram Protocol)**  
+**UDP (User Datagram Protocol)**<br>
 Reference: [RFC 768 - User Datagram Protocol](https://www.rfc-editor.org/rfc/rfc768)
 
 1. **Connectionless**: No handshake is required before sending.
@@ -128,7 +128,7 @@ Example:
 
 [Back to Contents](#contents)
 
---- 
+---
 
 # Transmission Control Protocol (TCP)
 
@@ -158,25 +158,35 @@ Core mechanisms for reliable data transfer implemented by TCP:
 5. **Pipelining**: Multiple unacknowledged segments can be in flight at the same time, improving bandwidth utilization and throughput. The amount of outstanding data is limited by `flow control` and `congestion control`.
 
 ## TCP Segment Format (3.5.2)
-<img src="./tcp_format.jpg" width="55%">
-<img src="./tcp_format2.png" width="40%">
+
+<img src="./tcp_format.jpg" alt="TCP segment format overview" width="55%">
+<img src="./tcp_format2.png" alt="TCP segment header fields" width="40%">
 
 [Back to Contents](#contents)
 
 ---
 
 ## RTT Estimation and Timeout (3.5.3)
+
 **Sample RTT**: measured from segment transmission to ACK receipt.
 **Estimated RTT**: smoothed RTT estimate using exponential weighted moving average (EWMA).
+
 $$ \text{Estimated RTT} = (1 - \alpha) \times \text{Estimated RTT} + \alpha \times \text{Sample RTT},  \alpha = 0.125 $$
+
 **DevRTT**: estimate of how much $\text{Sample RTT}$ varies from $\text{Estimated RTT}$.
-$$\text{DevRTT}= (1 - \beta) \times \text{DevRTT} + \beta \times |\text{Sample RTT} - \text{Estimated RTT}|, \beta = 0.25 $$ 
+
+$$\text{DevRTT}= (1 - \beta) \times \text{DevRTT} + \beta \times |\text{Sample RTT} - \text{Estimated RTT}|, \beta = 0.25 $$
+
 **Timeout Interval**:
+
 $$ \text{Timeout Interval} = \text {Estimated RTT} + 4\text{DevRtt} $$
- - Initial timeout is 1 sec; after a timeout. TCP **doubles** the timeout interval temporarily.
- - $\text{Timeout Interval}$ will compute again as $\text{Estimated RTT}$ updates.
+
+- Initial timeout is 1 sec; after a timeout, TCP **doubles** the timeout interval temporarily.
+- $\text{Timeout Interval}$ will compute again as $\text{Estimated RTT}$ updates.
+
 ## TCP Flow Control (3.5.5)
-<img src="./receive_window.png"  width="50%">
+
+<img src="./receive_window.png" alt="TCP receive window" width="50%">
 
 $$ \text{LastByteReceived} - \text{LastByteRead} = \text{DataInBuffer} \leq \text{ReceiveBuffer} $$
 
@@ -187,11 +197,12 @@ The receiver advertises its available buffer space through the TCP `receive wind
 ## Connection-oriented Transport TCP  (3.5.6)
 
 ### Establish TCP connection Three-way Handshake
-<img src="./three-way_handshakes.jpg"  width="60%">
 
+<img src="./three-way_handshakes.jpg" alt="TCP three-way handshake" width="60%">
 
 ### Close TCP Connection
-<img src="./close_connection.jpg"  width="60%">
+
+<img src="./close_connection.jpg" alt="TCP connection close" width="60%">
 
 [Back to Contents](#contents)
 
@@ -200,47 +211,54 @@ The receiver advertises its available buffer space through the TCP `receive wind
 ## TCP Congestion Control (3.6 & 3.7)
 
 Classification based on whether the network-layer provides **explicit feedback**:
+
 ### End-to-End Congestion Control (TCP Implementation)
+
 The network-layer does not provide explicit feedback, the hosts themselves must detect congestion or probe bandwidth through:
- - Timeout -> severe congestion
- - Triple duplicate ACKs -> mild congestion -> fast retransmit
- - ACK arrival -> no congestion -> increase cwnd
+
+- Timeout -> severe congestion
+- Triple duplicate ACKs -> mild congestion -> fast retransmit
+- ACK arrival -> no congestion -> increase cwnd
 
 The TCP sender maintains a **Congestion Window (cwnd)** to limit the amount of unacknowledged data in flight:
+
 $$ \text{TCP Rate} = \frac{\text{Congestion Window(cwnd)} }{\text{RTT}} bytes/sec$$
 
 $$ \text{LastSentByte} - \text{LastByteAcked} \leq \min(\text{cwnd}, \text{rwnd}) $$
 
 Core Mechanism: **Additive Increase/ Multiplicative Decrease (AIMD)**
+
 - Linear (additive) increase in `cwnd` of `1 MSS/RTT` when no congestion.
 - Halve (multiplicate) decrease of `cwnd` on congestion detection (timeout or triple duplicate ACKs)
+
 #### 1. Loss-based Congestion Control
+
 Maximum Segment Size (MSS): the largest segment size that can be sent in a single TCP segment, typically around **1460** bytes
 
 Three Phases of TCP Congestion Control:
-1. **Slow Start**: 
+
+1. **Slow Start**:
    - $ \text{cwnd} += 1 \text{ MSS/ACK} $ (double `cwnd` every RTT), **exponential growth**
    - When $ \text{cwnd} \geq \text{ssthresh (slow start threshold)} $, transition to:
 2. **Congestion Avoidance**:
    - $\text{cwnd} += 1 \text{ MSS/RTT}$, linear growth for `TCP Tahoe` and `TCP Reno`, cubic growth for `TCP Cubic`
-3. **Fast Recovery**: 
-    - $cwnd = ssthresh + 1 \text{MSS}/\text{dupACK}$ when triple duplicate ACKs are received, and then transition to congestion avoidance phase.  
- 
+3. **Fast Recovery**:
+    - $cwnd = ssthresh + 1 \text{MSS}/\text{dupACK}$ when triple duplicate ACKs are received, and then transition to congestion avoidance phase.
+
 Events:
 - **Timeout**: $ \text{ssthresh} = \frac{\text{cwnd}}{2}, \text{cwnd} = 1 \text{ MSS} $
 - **Triple duplicate ACKs**: $ \text{ssthresh} = \frac{\text{cwnd}}{2}, \text{cwnd} = \text{ssthresh} + 3 \text{ MSS} $
 
-<img src="./tcp_cwnd.png"  width="45%"> <img src="./tcp_cubic.png"  width="45%">
-
+<img src="./tcp_cwnd.png" alt="TCP congestion window growth" width="45%"> <img src="./tcp_cubic.png" alt="TCP Cubic congestion window growth" width="45%">
 
 #### 2. Delay-based Congestion Control
 
 Instead of waiting for packet loss, delay-based approaches detect congestion early by monitoring **RTT increase** as an indicator of growing queue lengths.
 
-**Key Idea:** Measure $RTT_{min}$ — the minimum observed RTT, which approximates the uncongested propagation delay. The estimated uncongested throughput is:  
- 
+**Key Idea:** Measure $RTT_{min}$ — the minimum observed RTT, which approximates the uncongested propagation delay. The estimated uncongested throughput is:
+
 $$ \text{Uncongested Throughput} = \frac{\text{cwnd}}{RTT_{min}} $$
- 
+
 - If $\text{actual throughput} \approx \frac{\text{cwnd}}{RTT_{min}}$ → path is **uncongested** → increase `cwnd`
 - If $\text{actual throughput} \ll \frac{\text{cwnd}}{RTT_{min}}$ → **congestion building** → decrease `cwnd`
 
