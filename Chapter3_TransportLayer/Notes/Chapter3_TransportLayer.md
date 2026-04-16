@@ -190,7 +190,7 @@ $$ \text{Timeout Interval} = \text {Estimated RTT} + 4\text{DevRtt} $$
 
 $$ \text{LastByteReceived} - \text{LastByteRead} = \text{DataInBuffer} \leq \text{ReceiveBuffer} $$
 
-$$ \text{rwnd = \text{ReceiveBuffer} - \text{DataInBuffer}}$$
+$$ \text{rwnd} = \text{ReceiveBuffer} - \text{DataInBuffer}$$
 
 The receiver advertises its available buffer space through the TCP `receive window` field, and the sender limits how much unacknowledged data it keeps in flight accordingly.
 
