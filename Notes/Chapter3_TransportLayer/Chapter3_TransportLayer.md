@@ -238,8 +238,8 @@ Maximum Segment Size (MSS): the largest segment size that can be sent in a singl
 Three Phases of TCP Congestion Control:
 
 1. **Slow Start**:
-   - $ \text{cwnd} += 1 \text{ MSS/ACK} $ (double `cwnd` every RTT), **exponential growth**
-   - When $ \text{cwnd} \geq \text{ssthresh (slow start threshold)} $, transition to:
+   - `cwnd += 1 MSS/ACK` (double `cwnd` every RTT), **exponential growth**
+   - When `cwnd >= ssthresh` (slow start threshold), transition to:
 2. **Congestion Avoidance**:
    - `cwnd += 1 MSS/RTT`, linear growth for `TCP Tahoe` and `TCP Reno`, cubic growth for `TCP Cubic`
 3. **Fast Recovery**:
