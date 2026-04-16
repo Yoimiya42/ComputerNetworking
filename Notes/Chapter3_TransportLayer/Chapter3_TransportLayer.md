@@ -173,7 +173,7 @@ Core mechanisms for reliable data transfer implemented by TCP:
 
 $$ \text{Estimated RTT} = (1 - \alpha) \times \text{Estimated RTT} + \alpha \times \text{Sample RTT},  \alpha = 0.125 $$
 
-**DevRTT**: estimate of how much $\text{Sample RTT}$ varies from $\text{Estimated RTT}$.
+**DevRTT**: estimate of how much `Sample RTT` varies from `Estimated RTT`.
 
 $$\text{DevRTT}= (1 - \beta) \times \text{DevRTT} + \beta \times |\text{Sample RTT} - \text{Estimated RTT}|, \beta = 0.25 $$
 
@@ -182,7 +182,7 @@ $$\text{DevRTT}= (1 - \beta) \times \text{DevRTT} + \beta \times |\text{Sample R
 $$ \text{Timeout Interval} = \text {Estimated RTT} + 4\text{DevRtt} $$
 
 - Initial timeout is 1 sec; after a timeout, TCP **doubles** the timeout interval temporarily.
-- $\text{Timeout Interval}$ will compute again as $\text{Estimated RTT}$ updates.
+- `Timeout Interval` is recomputed as `Estimated RTT` updates.
 
 ## TCP Flow Control (3.5.5)
 
@@ -241,13 +241,13 @@ Three Phases of TCP Congestion Control:
    - $ \text{cwnd} += 1 \text{ MSS/ACK} $ (double `cwnd` every RTT), **exponential growth**
    - When $ \text{cwnd} \geq \text{ssthresh (slow start threshold)} $, transition to:
 2. **Congestion Avoidance**:
-   - $\text{cwnd} += 1 \text{ MSS/RTT}$, linear growth for `TCP Tahoe` and `TCP Reno`, cubic growth for `TCP Cubic`
+   - `cwnd += 1 MSS/RTT`, linear growth for `TCP Tahoe` and `TCP Reno`, cubic growth for `TCP Cubic`
 3. **Fast Recovery**:
-    - $cwnd = ssthresh + 1 \text{MSS}/\text{dupACK}$ when triple duplicate ACKs are received, and then transition to congestion avoidance phase.
+    - `cwnd = ssthresh + 1 MSS/dupACK` when triple duplicate ACKs are received, and then transition to the congestion avoidance phase.
 
 Events:
-- **Timeout**: $ \text{ssthresh} = \frac{\text{cwnd}}{2}, \text{cwnd} = 1 \text{ MSS} $
-- **Triple duplicate ACKs**: $ \text{ssthresh} = \frac{\text{cwnd}}{2}, \text{cwnd} = \text{ssthresh} + 3 \text{ MSS} $
+- **Timeout**: `ssthresh = cwnd / 2`, `cwnd = 1 MSS`
+- **Triple duplicate ACKs**: `ssthresh = cwnd / 2`, `cwnd = ssthresh + 3 MSS`
 
 <img src="./tcp_cwnd.png" alt="TCP congestion window growth" width="45%"> <img src="./tcp_cubic.png" alt="TCP Cubic congestion window growth" width="45%">
 
