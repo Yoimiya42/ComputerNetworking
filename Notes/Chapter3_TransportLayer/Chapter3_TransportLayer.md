@@ -52,6 +52,8 @@ The transport layer provides **logical communication** between **processes** run
 
 On the sender side, the transport layer breaks application messages into **segments** and passes them to the network layer as **datagrams**. On the receiver side, it reassembles segments into messages and passes them to the application layer.
 
+[Back to Contents](#contents)
+
 ---
 
 ## 3.2 Multiplexing and Demultiplexing
@@ -94,6 +96,8 @@ The destination socket is identified by the **4-tuple (src IP, src port, dst IP,
 
 <img src="./TCP_demultiplexing.png" alt="TCP demultiplexing" width="60%">
 
+[Back to Contents](#contents)
+
 ---
 
 # User Datagram Protocol (UDP)
@@ -119,6 +123,8 @@ Reference: [RFC 768 - User Datagram Protocol](https://www.rfc-editor.org/rfc/rfc
 Example:
 
 <img src="./checksum.png" alt="Checksum example" width="50%">
+
+[Back to Contents](#contents)
 
 --- 
 
@@ -153,6 +159,9 @@ Core mechanisms for reliable data transfer implemented by TCP:
 <img src="./tcp_format.jpg" width="55%">
 <img src="./tcp_format2.png" width="40%">
 
+[Back to Contents](#contents)
+
+---
 
 ## RTT Estimation and Timeout (3.5.3)
 **Sample RTT**: measured from segment transmission to ACK receipt.
@@ -181,6 +190,10 @@ The receiver advertises its available buffer space through the TCP `receive wind
 
 ### Close TCP Connection
 <img src="./close_connection.jpg"  width="60%">
+
+[Back to Contents](#contents)
+
+---
 
 ## TCP Congestion Control (3.6 & 3.7)
 
@@ -232,6 +245,8 @@ $$\text{Uncongested Throughput} = \frac{\text{cwnd}}{RTT_{min}}$$
 - Proactively reduces `cwnd` when delay rises, before any packet is dropped.
 - Operates under the philosophy: *"Keep the pipe just full, but no fuller."*
 
+[Back to Contents](#contents)
+
 ---
 
 ### Network-Assisted Congestion Control
@@ -264,3 +279,5 @@ Sender receives ECE:
 **Key properties:**
 - Congestion is signaled **before** packets are dropped — earlier and less disruptive than loss-based detection.
 - Requires support from both endpoints **and** intermediate routers.
+
+[Back to Contents](#contents)
