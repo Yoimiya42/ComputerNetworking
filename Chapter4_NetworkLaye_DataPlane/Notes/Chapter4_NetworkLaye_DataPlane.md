@@ -26,7 +26,12 @@ No guarantees on:
 
 ## 4.2  Router
 
+---
 
 ## 4.3  The Internet Protocol (IP)
 
+---
+
 ## 4.4  Forwarding
+
+---
