@@ -86,6 +86,13 @@ Mitigation:
    - Detects **unknown** attacks by **comparing network traffic to a baseline of normal behavior**.
    - May produce false positives.
 
+### III. Security Mechanisms
+
+1. **Firewalls**: Filter network traffic and block **unauthorized network access** based on **predefined security rules** (IP addresses, ports, and protocols).
+2. **Network Intrusion Detection Systems (NIDS)**: Monitor network traffic for **suspicious activity** and **alert administrators** of potential security risks.
+3. **Virtual Private Networks (VPNs)**: Protect data from eavesdropping and modification while in transit by creating **encrypted tunnels**.
+4. **Hypertext Transfer Protocol Secure (HTTPS)**: Protect data from eavesdropping by encrypting network traffic; it does not hide IP addresses.
+  
 
 ---
 
