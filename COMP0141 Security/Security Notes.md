@@ -1,21 +1,21 @@
 # COMP0141 Security
 
-
 ## Question 2: CIA
+
 ### I. CIA
 
-**Confidentiality**: Not disclosed to unauthorized parties.
-**Integrity**: Not improperly altered.
-**Availability**: Available when needed.
+- **Confidentiality**: Not disclosed to unauthorized parties.
+- **Integrity**: Not improperly altered.
+- **Availability**: Available when needed.
 
 ### II. Threats (STRIDE)
 
-**Spoofing** -- Authenticity
-**Tempering** -- Integrity
-**Repudiation** -- Non-repudiation
-**Information Disclosure** -- Confidentiality
-**Denial of Service** -- Availability
-**Elevation of Privilege** -- Authorization
+- **Spoofing** -- Authenticity
+- **Tempering** -- Integrity
+- **Repudiation** -- Non-repudiation
+- **Information Disclosure** -- Confidentiality
+- **Denial of Service** -- Availability
+- **Elevation of Privilege** -- Authorization
 
 ### III. Security Principles
 
@@ -23,29 +23,29 @@
 2. **Fail-Safe Defaults** -- Access only permissions.
 3. **Completely Mediation** -- Requires authorized for each protected operation.
 4. **Open Design**
-    - Public: Encryption Algorithms, Protocols.
-    - Private: Cipher Keys, Passwords.      
+   - Public: Encryption Algorithms, Protocols.
+   - Private: Cipher Keys, Passwords.
 5. **Separation of Privilege** -- Approval from multiple individuals or organizations.
-6. **Least Privilege** 
-    - Use minimum privileges necessary to complete a task.
-    - Limit the scope of damage caused by attacks. 
+6. **Least Privilege**
+   - Use minimum privileges necessary to complete a task.
+   - Limit the scope of damage caused by attacks.
 7. **Least Common Mechanism** -- Minimize shared mechanisms between users.
 8. **Psychological Acceptability** -- Make security mechanism easy and intuitive to use.
 
 ---
 
-## Question 3: Human Factors 
+## Question 3: Human Factors
 
 ### I. Human Limitations
 
 1. **Limited Memory**: users **cannot remember long & complex passwords**, they may **write them down / reuse them**，increasing the risk of compromise.
-2. **Limited Attention**: users usually **prioritize their primary task over security**, they may **ignore security warnings / use insecure workarounds**
+2. **Limited Attention**: users usually **prioritize their primary task over security**, they may **ignore security warnings / use insecure workarounds**.
 3. **Cognitive Bias**: Users may **misjudge the security risks**, e.g.,
    - **Optimism Bias**: "It won't happen to me."
    - **Anchoring Bias**: "I didn't have a problem before, so I'll do it again."
 4. **Desensitization**: Too frequent **security warnings / false positives** -> Users **ignore warnings**.
 
-Design/Policy should be human-friendly, easy to understand and follow， so that users **increase compliance & reduce security risks**.
+Design/Policy should be human-friendly, easy to understand and follow，so that users **increase compliance & reduce security risks**.
 
 ---
 
@@ -53,15 +53,15 @@ Design/Policy should be human-friendly, easy to understand and follow， so that
 
 ### I. Denial of Service (DoS)
 
->1. What is a DoS attack?
+#### 1. What is a DoS attack?
 
 A Denial of Service attack **makes a service unavailable to legitimate users**, usually by **flooding it with requests**. This **exhausts resources** such as **bandwidth/CPU**.
 
->2. How are denial of service attacks related to botnets? 
+#### 2. How are denial of service attacks related to botnets?
 
 A botnet is a network of **compromised devices** controlled via a **Command and Control Server (C&C Server)**. The attacker can order all bots to flood the same target at once, causing a **Distributed Denial of Service (DDoS)** attack.
 
-> 3. What techniques can be used to prevent this type of attack?
+#### 3. What techniques can be used to prevent this type of attack?
 
 1. **Client Puzzles**: make clients **perform computational work** before requests are processed, to **slow down attackers**.
 2. **CAPTCHAs (Completely Automated Public Turing test to tell Computers and Human Aparts)**: verify requests are from humans, not bots.
@@ -69,17 +69,15 @@ A botnet is a network of **compromised devices** controlled via a **Command and 
    - **Ingress Filtering**: ISPs reject packets with **spoofing source IP addresses**, making attack sources easier to identify and block.
    - **Traceback**: Routers log packet paths, allowing the attack sources can be traced back.
 
-> 4. What TCP SYN Flood?
+#### 4. What TCP SYN Flood?
 
 Attacker sends **numerous SYN requests** without completing the handshake, causing the server to **allocates resources for half-open connections**, which exhausts the server's resources and prevents legitimate users from connecting.
 
-Mitigation:
-**SYN Cookies**: Avoid allocating resources until the handshake is completed.
-
+**Mitigation:** **SYN Cookies**: Avoid allocating resources until the handshake is completed.
 
 ### II. Network Intrusion Detection Systems (NIDS)
 
-1. **Signature-Based Detection**: 
+1. **Signature-Based Detection**:
    - Detects **known** attacks by **comparing network traffic to a database of attack signatures**.
    - May miss new attacks.
 2. **Anomaly-Based Detection**:
@@ -92,24 +90,22 @@ Mitigation:
 2. **Network Intrusion Detection Systems (NIDS)**: Monitor network traffic for **suspicious activity** and **alert administrators** of potential security risks.
 3. **Virtual Private Networks (VPNs)**: Protect data from eavesdropping and modification while in transit by creating **encrypted tunnels**.
 4. **Hypertext Transfer Protocol Secure (HTTPS)**: Protect data from eavesdropping by encrypting network traffic; it does not hide IP addresses.
-  
 
 ---
-
-
 
 ## Question 5: Authentication
 
 ### I. Authentication Factors
+
 1. Something You **Know**:
-   - Passwords,
-   - PINs (Personal Identification Numbers),
-   - Personal Details /Security Questions.
+   - Passwords
+   - PINs (Personal Identification Numbers)
+   - Personal Details / Security Questions
 2. Something You **Have**:
-   - Smart Cards,
-   - Authentication Apps,
+   - Smart Cards
+   - Authentication Apps
 3. Something You **Are** (Biometric):
-   - Fingerprint,
+   - Fingerprint
    - Facial Recognition
 
 ### II. Multi-Factor Authentication (MFA)
@@ -120,14 +116,16 @@ Mitigation:
 
 ### III. Biometrics
 
-##### Advantages
+#### Advantages
+
 - **Nothing to remember**
 - **Cannot share**
 - **Unique** (Assuming perfect accuracy)
 
-##### Disadvantages
+#### Disadvantages
+
 1. **Matching is never perfect**
-   - There is a trade-off between the **False Acceptance Rate (FAR)** and the **False Rejection Rate (FRR)**. 
+   - There is a trade-off between the **False Acceptance Rate (FAR)** and the **False Rejection Rate (FRR)**.
    - Increasing security by reducing FAR will increases FRR, causing more incorrect rejections for legitimate users.
 2. **Cannot be revoked**
    - Biometrics are private but not secret.
@@ -137,26 +135,29 @@ Mitigation:
    - The sensor only sees what is presented, so a photo or a fake finger may pass.
 
 ### IV. Passwords Salt
+
 A random value added to a password before hashing.
 
 - Prevents **rainbow table attacks**.
 - Prevents **identical passwords having identical hashes.**
 
 ### V. One-Time Password (OTP)
+
 1. **SMS (Short Message Service) OTP**
-    -  (Pro) No extra app needs to be installed.
-    -  (Pro) Setup is simple, only requires a phone number.
-    -  (Con) Vulnerable to **SIM swapping / SMS interception**.
+   - **Pro**: No extra app needs to be installed.
+   - **Pro**: Setup is simple, only requires a phone number.
+   - **Con**: Vulnerable to **SIM swapping / SMS interception**.
 2. **Authentication APP**
-    -  (Pro) generated locally on the device, works without network connection.
-    -  (Pro) Not vulnerable to **SIM swapping / SMS interception**.
-3. **Hardware Token**  
-  
+   - **Pro**: generated locally on the device, works without network connection.
+   - **Pro**: Not vulnerable to **SIM swapping / SMS interception**.
+3. **Hardware Token**
+
 ---
 
 ## Question 6: Vulnerabilities
 
 ### I. Security Properties
+
 1. **Correctness**: input ----> correct output
 2. **Safety**: input --X--> dangerous output
 3. **Robustness**: handle errors that may occur during execution.
@@ -165,26 +166,26 @@ These properties must hold even in the presence of **resourceful and strategic a
 
 ### II. Buffer Overflow
 
+```text
+argument1
+argument2
+argument3
+-----------------
+Return Address
+-----------------
+Saved fp
+local variable1
+local variable2
+```
 
-|argument1| 
-|:---------:|
-|argument2|     
-|argument3|     
-|**Return Address**|
-|-------------|
-|**Saved fp**|
-|local variable1|
-|local variable2|
-
-
-
-> 1. What is a buffer overflow?   
+#### 1. What is a buffer overflow?
 
 A buffer flow occurs when a program **writes more data into a buffer that it can hold, overwriting adjacent memory**.
 
-> 2. How can a buffer overflow be exploited?
+#### 2. How can a buffer overflow be exploited?
 
 The overflow may overwrite:
+
 1. **Local Variables**:
    - Data Tempering;
    - Program logic errors;
@@ -193,9 +194,9 @@ The overflow may overwrite:
 3. **Saved Frame Pointer**
    - Control-flow Hijacking
    - Execution jumps to attacker-controlled address.
-   - The attacker may execute *shellcode* with a NOP sequence, giving them arbitrary code execution with high privileges. 
+   - The attacker may execute *shellcode* with a NOP sequence, giving them arbitrary code execution with high privileges.
 
-> 3. Mitigations for Buffer Overflow
+#### 3. Mitigations for Buffer Overflow
 
 1. **Bound Checking**: Input Length < Buffer Size
 2. **Complete Mediation**: Check on every path leading to the buffer.
@@ -203,19 +204,18 @@ The overflow may overwrite:
 4. **Stack Canaries**
 5. **Non-executable Stack**
 
-> 4. Why are buffer overflows more common in some languages?
+#### 4. Why are buffer overflows more common in some languages?
 
 - **C/C++** allow **direct memory access & do not automatically check array bounds**.
 - Memory-safe languages such as **Java/Python** performs **bounds checking & memory management**.
 
-
 ### III. SQL Injection
 
-> 1. What is SQL Injection?
+#### 1. What is SQL Injection?
 
 SQL Injection occurs when **user input includes SQL syntax and is treated as part of SQL commands**.
 
-> 2. Example
+#### 2. Example
 
 ```sql
 SELECT * FROM users
@@ -224,38 +224,39 @@ AND password = 'PASSWORD';
 ```
 
 The attacker enters:
+
 ```sql
 ' OR '1'='1
 ```
 
 The query becomes:
+
 ```sql
 SELECT * FROM users
 WHERE username = '' OR '1'='1'
 ```
+
 The condition `'1'='1'` is always true, so the attacker can bypass authentication.
 
-> 3. Consequences for SQL Injection
+#### 3. Consequences for SQL Injection
 
 1. Bypass authentication.
 2. Read confidential data. (Confidentiality)
 3. Modify database records. (Integrity)
 4. Disrupt service. (Availability)
 
-> 4. Mitigations for SQL Injection
+#### 4. Mitigations for SQL Injection
 
 1. **Parameterized Queries**: The user input is treated only as data, not executable SQL syntax.
 2. **Server-side Input Sanitization**: Accept only safe input or correctly escape input.
 
-
-
 ### IV. Other Vulnerabilities
 
-1. Clickjacking:
-   Tricking a user into clicking a **hidden or disguised button** on a trusted website, causing an unintended action. ---> **CSP/ prevent framing**
-2. Cross-Site Scripting (XSS):
-   **Injecting malicious scripts** into a trusted website, so that it can **execute in the user's browser**. ---> **CSP/ sanitize HTML**
-3. Cross-Site Request Forgery (CSRF)：
-   Tricking a logged-in user's browser into **sending unauthorized requests** to a trusted website. ---> **CSRF token / SameSite cookie**
+1. **Clickjacking**: Tricking a user into clicking a **hidden or disguised button** on a trusted website, causing an unintended action.
+   - **Mitigation**: CSP / prevent framing.
+2. **Cross-Site Scripting (XSS)**: **Injecting malicious scripts** into a trusted website, so that it can **execute in the user's browser**.
+   - **Mitigation**: CSP / sanitize HTML.
+3. **Cross-Site Request Forgery (CSRF)**: Tricking a logged-in user's browser into **sending unauthorized requests** to a trusted website.
+   - **Mitigation**: CSRF token / SameSite cookie.
 
 ---
