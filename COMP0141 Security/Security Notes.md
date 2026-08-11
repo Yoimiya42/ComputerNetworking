@@ -11,7 +11,7 @@
 ### II. Threats (STRIDE)
 
 - **Spoofing** -- Authenticity
-- **Tempering** -- Integrity
+- **Tampering** -- Integrity
 - **Repudiation** -- Non-repudiation
 - **Information Disclosure** -- Confidentiality
 - **Denial of Service** -- Availability
@@ -20,8 +20,8 @@
 ### III. Security Principles
 
 1. **Economy of Mechanism** -- Keep the design as simple and small as possible.
-2. **Fail-Safe Defaults** -- Access only permissions.
-3. **Completely Mediation** -- Requires authorized for each protected operation.
+2. **Fail-Safe Defaults** -- Deny access by default.
+3. **Complete Mediation** -- Requires authorization for each protected operation.
 4. **Open Design**
    - Public: Encryption Algorithms, Protocols.
    - Private: Cipher Keys, Passwords.
@@ -64,14 +64,14 @@ A botnet is a network of **compromised devices** controlled via a **Command and 
 #### 3. What techniques can be used to prevent this type of attack?
 
 1. **Client Puzzles**: make clients **perform computational work** before requests are processed, to **slow down attackers**.
-2. **CAPTCHAs (Completely Automated Public Turing test to tell Computers and Human Aparts)**: verify requests are from humans, not bots.
+2. **CAPTCHAs (Completely Automated Public Turing test to tell Computers and Humans Apart)**: verify requests are from humans, not bots.
 3. **Source Identification**:
    - **Ingress Filtering**: ISPs reject packets with **spoofing source IP addresses**, making attack sources easier to identify and block.
-   - **Traceback**: Routers log packet paths, allowing the attack sources can be traced back.
+   - **Traceback**: Routers log packet paths, allowing the attack sources to be traced back.
 
-#### 4. What TCP SYN Flood?
+#### 4. What is a TCP SYN flood?
 
-Attacker sends **numerous SYN requests** without completing the handshake, causing the server to **allocates resources for half-open connections**, which exhausts the server's resources and prevents legitimate users from connecting.
+An attacker sends **numerous SYN requests** without completing the handshake, causing the server to **allocate resources for half-open connections**, which exhausts the server's resources and prevents legitimate users from connecting.
 
 **Mitigation:** **SYN Cookies**: Avoid allocating resources until the handshake is completed.
 
@@ -126,7 +126,7 @@ Attacker sends **numerous SYN requests** without completing the handshake, causi
 
 1. **Matching is never perfect**
    - There is a trade-off between the **False Acceptance Rate (FAR)** and the **False Rejection Rate (FRR)**.
-   - Increasing security by reducing FAR will increases FRR, causing more incorrect rejections for legitimate users.
+   - Increasing security by reducing FAR will increase FRR, causing more incorrect rejections for legitimate users.
 2. **Cannot be revoked**
    - Biometrics are private but not secret.
    - We may leave them on glasses or door handles.
@@ -134,7 +134,7 @@ Attacker sends **numerous SYN requests** without completing the handshake, causi
 3. **Can be faked**
    - The sensor only sees what is presented, so a photo or a fake finger may pass.
 
-### IV. Passwords Salt
+### IV. Password Salting
 
 A random value added to a password before hashing.
 
@@ -147,8 +147,8 @@ A random value added to a password before hashing.
    - **Pro**: No extra app needs to be installed.
    - **Pro**: Setup is simple, only requires a phone number.
    - **Con**: Vulnerable to **SIM swapping / SMS interception**.
-2. **Authentication APP**
-   - **Pro**: generated locally on the device, works without network connection.
+2. **Authentication App**
+   - **Pro**: Generated locally on the device; works without a network connection.
    - **Pro**: Not vulnerable to **SIM swapping / SMS interception**.
 3. **Hardware Token**
 
@@ -170,7 +170,6 @@ These properties must hold even in the presence of **resourceful and strategic a
 argument1
 argument2
 argument3
------------------
 Return Address
 -----------------
 Saved fp
@@ -180,14 +179,14 @@ local variable2
 
 #### 1. What is a buffer overflow?
 
-A buffer flow occurs when a program **writes more data into a buffer that it can hold, overwriting adjacent memory**.
+A buffer overflow occurs when a program **writes more data into a buffer than it can hold, overwriting adjacent memory**.
 
 #### 2. How can a buffer overflow be exploited?
 
 The overflow may overwrite:
 
 1. **Local Variables**:
-   - Data Tempering;
+   - Data Tampering;
    - Program logic errors;
    - Authentication bypass.
 2. **Return Address**
@@ -198,7 +197,7 @@ The overflow may overwrite:
 
 #### 3. Mitigations for Buffer Overflow
 
-1. **Bound Checking**: Input Length < Buffer Size
+1. **Bounds Checking**: Input Length < Buffer Size
 2. **Complete Mediation**: Check on every path leading to the buffer.
 3. **Use Safer Libraries/APIs**. e.g. `strlcpy()` instead of `strcpy()`.
 4. **Stack Canaries**
@@ -207,7 +206,7 @@ The overflow may overwrite:
 #### 4. Why are buffer overflows more common in some languages?
 
 - **C/C++** allow **direct memory access & do not automatically check array bounds**.
-- Memory-safe languages such as **Java/Python** performs **bounds checking & memory management**.
+- Memory-safe languages such as **Java/Python** perform **bounds checking & memory management**.
 
 ### III. SQL Injection
 
