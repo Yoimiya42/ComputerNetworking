@@ -45,7 +45,7 @@
    - **Anchoring Bias**: "I didn't have a problem before, so I'll do it again."
 4. **Desensitization**: Too frequent **security warnings / false positives** -> Users **ignore warnings**.
 
-Design/Policy should be human-friendly, easy to understand and follow，so that users **increase compliance & reduce security risks**.
+Security Policy should be human-friendly--easy to understand and follow--so that users **comply more and security risks are reduced**.
 
 ---
 
@@ -111,8 +111,7 @@ An attacker sends **numerous SYN requests** without completing the handshake, ca
 ### II. Multi-Factor Authentication (MFA)
 
 - **Provides defense against different attack types**.
-- **Reduces the impact of single factor compromise**.
-- **Compromising a single factor is not enough; an attacker must compromise multiple factors, requiring high cost and effort**.
+- **Compromising one factor is not enough; an attacker must break multiple factors, which requires greater cost and effort**.
 
 ### III. Biometrics
 
@@ -126,7 +125,7 @@ An attacker sends **numerous SYN requests** without completing the handshake, ca
 
 1. **Matching is never perfect**
    - There is a trade-off between the **False Acceptance Rate (FAR)** and the **False Rejection Rate (FRR)**.
-   - Increasing security by reducing FAR will increase FRR, causing more incorrect rejections for legitimate users.
+   - A stricter threshold lowers FAR but raises FRR: more security, but legitimate users are falsely rejected more often.
 2. **Cannot be revoked**
    - Biometrics are private but not secret.
    - We may leave them on glasses or door handles.
