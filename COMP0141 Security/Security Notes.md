@@ -17,7 +17,7 @@
 - **Denial of Service** -- Availability
 - **Elevation of Privilege** -- Authorization
 
-### III. Security Principles
+### III. Security Principles (ELLF COPS)
 
 1. **Economy of Mechanism** -- Keep the design as simple and small as possible.
 2. **Fail-Safe Defaults** -- Deny access by default.
