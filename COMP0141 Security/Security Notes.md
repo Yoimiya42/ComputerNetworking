@@ -73,7 +73,7 @@
    - Use minimum privileges necessary to complete a task.
    - Limit the scope of damage caused by attacks.
 7. **Least Common Mechanism** -- Minimize shared mechanisms between users.
-8. **Psychological Acceptability** -- Make security mechanism easy and intuitive to use.
+8. **Psychological Acceptability** -- Make the security mechanism easy and intuitive to use.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -110,7 +110,7 @@
    - **Pre-image resistant**: output -X-> input
    - **Collision resistant**: hard to find two different inputs with the same output
 
-Authentication Encryption with Associated Data (AEAD): **Encryption (Confidentiality) + MAC (Integrity/Authenticity)**
+Authenticated Encryption with Associated Data (AEAD): **Encryption (Confidentiality) + MAC (Integrity/Authenticity)**
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -124,7 +124,7 @@ Authentication Encryption with Associated Data (AEAD): **Encryption (Confidentia
 
 ### I. Human Limitations
 
-1. **Limited Memory**: users **cannot remember long & complex passwords**, they may **write them down / reuse them**，increasing the risk of compromise.
+1. **Limited Memory**: users **cannot remember long & complex passwords**, they may **write them down / reuse them**, increasing the risk of compromise.
 2. **Limited Attention**: users usually **prioritize their primary task over security**, they may **ignore security warnings / use insecure workarounds**.
 3. **Cognitive Bias**: Users may **misjudge the security risks**, e.g.,
    - **Optimism Bias**: "It won't happen to me."
@@ -164,7 +164,7 @@ A botnet is a network of **compromised devices** controlled via a **Command and 
      - Annoying to users.
      - Arms race between CAPTCHA designers and attackers.
 3. **Source Identification**:
-   - **Ingress Filtering**: ISPs reject packets with **spoofing source IP addresses**, making attack sources easier to identify and block.
+   - **Ingress Filtering**: ISPs reject packets with **spoofed source IP addresses**, making attack sources easier to identify and block.
    - **Traceback**: Routers log packet paths, allowing the attack sources to be traced back.
 
 #### 4. What is a TCP SYN flood?
@@ -243,7 +243,7 @@ An attacker sends **numerous SYN requests** without completing the handshake, ca
    - Fingerprint
    - Facial Recognition
 
-Challenge-response: the server sends a **random challenge**, and the client **returns a response computed with its secret key** (Sequential, cannot be concurrently). This **prevents replay attacks**.
+Challenge-response: the server sends a **random challenge**, and the client **returns a response computed with its secret key**. This is a sequential process that cannot be performed concurrently, and it **prevents replay attacks**.
 
 <a id="question-5-mfa"></a>
 
@@ -278,7 +278,7 @@ Sample -> Template (Feature Extraction) -> Matching
 3. **Can be faked**
    - The sensor only sees what is presented, so a photo or a fake finger may pass.
 
-Users may reject to provide biometric data because:
+Users may refuse to provide biometric data because:
 
 - Threats to privacy.
 - Doubts about the reliability and security of biometric systems.
@@ -306,7 +306,7 @@ A password should be stored as `hash(password, salt)`, and the salt should be **
 2. **Authentication App**
    - **Pro**: Works without a network connection.
    - **Pro**: Not vulnerable to **SIM swapping / SMS interception**.
-   - **Con**: Setup is more complicated
+   - **Con**: Setup is more complicated.
 3. **Hardware Token**
 
 <a id="question-5-identification-vs-verification"></a>
@@ -364,7 +364,7 @@ The overflow may overwrite:
 2. **Return Address**
 3. **Saved Frame Pointer**
    - Control-flow Hijacking
-   - Execution jumps to attacker-controlled address and run *shellcode* with a NOP sequence,. The attacker gain  arbitrary code execution with program's privileges.
+   - Execution jumps to an attacker-controlled address and runs *shellcode* with a NOP sequence. The attacker gains arbitrary code execution with the program's privileges.
 
 #### 3. Mitigations for Buffer Overflow
 
@@ -435,13 +435,13 @@ The attacker puts an **invisible layer** over a normal-looking page, tricking a 
 
 1. **Cross-Site Scripting (XSS)**: **Injecting malicious scripts** into a trusted website, so the victim’s browser **runs it with that site’s authority**, and the script can read cookies and session tokens.
    - Mitigation: **Content Security Policy (CSP) / Input Sanitization (allowlist)**
-2. **Cross-Site Request Forgery (CSRF)**: Tricking a logged-in user's browser into **sending unauthorized requests** with user's cookies, so the site accepts the request as legitimate.
+2. **Cross-Site Request Forgery (CSRF)**: Tricking a logged-in user's browser into **sending unauthorized requests** with the user's cookies, so the site accepts the request as legitimate.
    - Mitigation: **CSRF token** (a random string attached to session that is not sent automatically) / **SameSite cookie**.
 
 - **XSS** exploits the **client's trust in the server** (the browser trusts the site, so it runs the script).
 - **CSRF** exploits the **server's trust in the client** (the server trusts the request because it carries the right cookie).
 
-example of attacker's action:
+Examples of an attacker's actions:
 
 - change the victim's email address or password
 - transfer money from the victim's bank account
