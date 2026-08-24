@@ -91,6 +91,33 @@ An attacker sends **numerous SYN requests** without completing the handshake, ca
 3. **Virtual Private Networks (VPNs)**: Protect data from eavesdropping and modification while in transit by creating **encrypted tunnels**.
 4. **Hypertext Transfer Protocol Secure (HTTPS)**: Protect data from eavesdropping by encrypting network traffic; it does not hide IP addresses.
 
+
+### IV. Malware
+
+|                     | **Need a Host Program**      | **Self-Contained Program**       |
+| ------------------- | ---------------------------- | -------------------------------- |
+| **Self-Spreading**  | Virus                        | Worm                             |
+| **Non-Spreading**   | Trojan Horse, Rootkit        | Spyware, Keylogger, Dialer       |
+
+
+- Virus: A program that infects other files by inserting a copy of itself; it **cannot survive alone** and runs **when the infected file is executed**.
+  - Where it hides: File infection (overwrite / parasitic), macro infection (auto-run macros in Word/Excel/PDF)
+  - Defense:
+    1.  **Signature-based detection**: match against a database of known-malware byte/instruction patterns 
+    2.  **Heuristics** (signs of infection), 
+    3.  **Behavioral signatures**:
+    4.  **Sandboxing**: run untrusted applications in a restricted environment.
+ 
+- Worm: A **self-spreading, self-contained** program that **autonomously spreads over a network** by sending copies of itself to other nodes — no host file needed.
+  - Propagation: email harvesting, network-share enumeration, IP scanning; exploit-based worms need **no human interaction** .
+  - Defense:
+    1. **Virus scanners** — effective against email-based worms.
+    2. **Host-level**: patching, **stack protection**, **ASLR** (Address Space Layout Randomization).
+    3. **Network-level**: **IDS**, **limit outgoing connections**, **personal firewall** (block outgoing SMTP from unknown apps).
+
+- Trojan Horse: Acts as a **backdoor entry** into the system, often while **pretending to be a legitimate program**.
+- Ransomware: Encrypts files and demands payment for the decryption key.
+
 ---
 
 ## Question 5: Authentication
