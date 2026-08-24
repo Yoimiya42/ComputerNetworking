@@ -178,7 +178,7 @@ local variable2
 
 #### 1. What is a buffer overflow?
 
-A buffer overflow occurs when a program **writes more data into a buffer than it can hold, overwriting adjacent memory**.
+A buffer overflow occurs when a program **writes more data into a buffer than it can hold, so the data goes beyond the buffer's boundary and overwrites adjacent memory**.
 
 #### 2. How can a buffer overflow be exploited?
 
@@ -197,10 +197,9 @@ The overflow may overwrite:
 #### 3. Mitigations for Buffer Overflow
 
 1. **Bounds Checking**: Input Length < Buffer Size
-2. **Complete Mediation**: Check on every path leading to the buffer.
-3. **Use Safer Libraries/APIs**. e.g. `strlcpy()` instead of `strcpy()`.
-4. **Stack Canaries**
-5. **Non-executable Stack**
+2. **Use Safer Libraries/APIs**. e.g. `strncpy()` instead of `strcpy()`, `strncat()` instead of `strcat()`, etc.
+3. **Stack Canaries**
+4. **Non-executable Stack**
 
 #### 4. Why are buffer overflows more common in some languages?
 
@@ -211,7 +210,7 @@ The overflow may overwrite:
 
 #### 1. What is SQL Injection?
 
-SQL Injection occurs when **user input includes SQL syntax and is treated as part of SQL commands**.
+SQL Injection occurs when **user input includes SQL syntax and is treated as part of SQL commands instead of data**, and the system **executes the attacker's SQL code without validation**.
 
 #### 2. Example
 
@@ -240,7 +239,7 @@ The condition `'1'='1'` is always true, so the attacker can bypass authenticatio
 
 1. Bypass authentication.
 2. Read confidential data. (Confidentiality)
-3. Modify database records. (Integrity)
+3. Modify or delete database records. (Integrity)
 4. Disrupt service. (Availability)
 
 #### 4. Mitigations for SQL Injection
