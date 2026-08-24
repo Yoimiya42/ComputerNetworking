@@ -4,34 +4,57 @@
 
 ## Table of Contents
 
-- [Question 1: CIA](#question-1-cia)
-  - [I. CIA](#question-1-cia-overview)
-  - [II. Threats (STRIDE)](#question-1-threats-stride)
-  - [III. Security Principles (ELLF COPS)](#question-1-security-principles)
-- [Question 2: Confidentiality & Integrity](#question-2-confidentiality-integrity)
-  - [I. Encryption](#question-2-encryption)
-  - [II. Integrity](#question-2-integrity)
-- [Question 3: Human Factors](#question-3-human-factors)
-  - [I. Human Limitations](#question-3-human-limitations)
-- [Question 4: Network Security](#question-4-network-security)
-  - [I. Denial of Service (DoS)](#question-4-denial-of-service)
-  - [II. Network Intrusion Detection Systems (NIDS)](#question-4-nids)
-  - [III. Security Mechanisms](#question-4-security-mechanisms)
-  - [IV. Malware](#question-4-malware)
-- [Question 5: Authentication](#question-5-authentication)
-  - [I. Authentication Factors](#question-5-authentication-factors)
-  - [II. Multi-Factor Authentication (MFA)](#question-5-mfa)
-  - [III. Biometrics](#question-5-biometrics)
-  - [IV. Password Salting](#question-5-password-salting)
-  - [V. One-Time Password (OTP)](#question-5-otp)
-  - [VI. Identification vs Verification](#question-5-identification-vs-verification)
-- [Question 6: Vulnerabilities](#question-6-vulnerabilities)
-  - [I. Security Properties](#question-6-security-properties)
-  - [II. Buffer Overflow](#question-6-buffer-overflow)
-  - [III. SQL Injection](#question-6-sql-injection)
-  - [IV. Clickjacking](#question-6-clickjacking)
-  - [V. Cross-Site Scripting (XSS) and Cross-Site Request Forgery (CSRF)](#question-6-xss-and-csrf)
-  - [VI. Cookies](#question-6-cookies)
+- [COMP0141 Security](#comp0141-security)
+  - [Table of Contents](#table-of-contents)
+  - [Question 1: CIA](#question-1-cia)
+    - [I. CIA](#i-cia)
+    - [II. Threats (STRIDE)](#ii-threats-stride)
+    - [III. Security Principles (ELLF COPS)](#iii-security-principles-ellf-cops)
+  - [Question 2: Confidentiality \& Integrity](#question-2-confidentiality--integrity)
+    - [I. Encryption](#i-encryption)
+    - [II. Integrity](#ii-integrity)
+  - [Question 3: Human Factors](#question-3-human-factors)
+    - [I. Human Limitations](#i-human-limitations)
+  - [Question 4: Network Security](#question-4-network-security)
+    - [I. Denial of Service (DoS)](#i-denial-of-service-dos)
+      - [1. What is a DoS attack?](#1-what-is-a-dos-attack)
+      - [2. How are denial of service attacks related to botnets?](#2-how-are-denial-of-service-attacks-related-to-botnets)
+      - [3. What techniques can be used to prevent this type of attack?](#3-what-techniques-can-be-used-to-prevent-this-type-of-attack)
+      - [4. What is a TCP SYN flood?](#4-what-is-a-tcp-syn-flood)
+    - [II. Network Intrusion Detection Systems (NIDS)](#ii-network-intrusion-detection-systems-nids)
+    - [III. Security Mechanisms](#iii-security-mechanisms)
+    - [IV. Malware](#iv-malware)
+  - [Question 5: Authentication](#question-5-authentication)
+    - [I. Authentication Factors](#i-authentication-factors)
+    - [II. Multi-Factor Authentication (MFA)](#ii-multi-factor-authentication-mfa)
+    - [III. Biometrics](#iii-biometrics)
+      - [Advantages](#advantages)
+      - [Disadvantages](#disadvantages)
+    - [IV. Password Salting](#iv-password-salting)
+    - [V. One-Time Password (OTP)](#v-one-time-password-otp)
+    - [VI. Identification vs Verification](#vi-identification-vs-verification)
+  - [Question 6: Vulnerabilities](#question-6-vulnerabilities)
+    - [I. Security Properties](#i-security-properties)
+    - [II. Buffer Overflow](#ii-buffer-overflow)
+      - [1. What is a buffer overflow?](#1-what-is-a-buffer-overflow)
+      - [2. How can a buffer overflow be exploited?](#2-how-can-a-buffer-overflow-be-exploited)
+      - [3. Mitigations for Buffer Overflow](#3-mitigations-for-buffer-overflow)
+      - [4. Why are buffer overflows more common in some languages?](#4-why-are-buffer-overflows-more-common-in-some-languages)
+    - [III. SQL Injection](#iii-sql-injection)
+      - [1. What is SQL Injection?](#1-what-is-sql-injection)
+      - [2. Example](#2-example)
+      - [3. Consequences for SQL Injection](#3-consequences-for-sql-injection)
+      - [4. Mitigations for SQL Injection](#4-mitigations-for-sql-injection)
+    - [IV. Clickjacking](#iv-clickjacking)
+    - [V. Cross-Site Scripting (XSS) and Cross-Site Request Forgery (CSRF)](#v-cross-site-scripting-xss-and-cross-site-request-forgery-csrf)
+    - [VI. Cookies](#vi-cookies)
+      - [1. What is a cookie?](#1-what-is-a-cookie)
+      - [2. Two types of cookies](#2-two-types-of-cookies)
+      - [3. What are cookies used for?](#3-what-are-cookies-used-for)
+  - [Question 7: Access Control](#question-7-access-control)
+    - [I. Core Concepts](#i-core-concepts)
+    - [II. Policy Models](#ii-policy-models)
+    - [III. UNIX Permissions](#iii-unix-permissions)
 
 ---
 
@@ -474,3 +497,40 @@ A cookie is a **name–value pair** stored by the browser and **automatically at
 [Back to Table of Contents](#table-of-contents)
 
 ---
+
+## Question 7: Access Control
+
+### I. Core Concepts
+
+- Access Control permits or denies a **subject** access to an **object** with a specific right (read/write/execute).
+
+>What are the different types of access control mechanisms?   
+1. Access control lists,
+2. Access control matrices,
+3. Capability/attribute based,
+4. Role based.
+
+- Give only the permissions required by business functions (Least Privilege) and deny everything else by default (Fail-safe Default).
+Complete Mediation ideally checks every access, but this may create excessive performance overhead.
+
+- Access control limits **both external and insider threats**, but can be hard to update, scale, and implement without policy errors.
+
+### II. Policy Models
+
+- **DAC (Discretionary Access Control)**: the object owner controls and may pass on permissions.
+
+- **MAC (Mandatory Access Control)**: permissions are assigned by a central administrator or system policy.
+
+- **RBAC (Role-Based Access Control)**: permissions are assigned to roles instead of individuals
+
+### III. UNIX Permissions
+
+- Permissions use `type | owner | group | others`, where `r` = read, `w` = write, and `x` = execute.
+
+- Check only one set: owner->group->others
+
+- For a directory, r lists contents, w creates/deletes/renames entries, and x allows traversal.
+
+- A sticky bit (t) means only the file owner, directory owner, or root can delete/rename a file in the directory.
+
+- Owner permissions override group permissions, so an owner may be denied access even if their group has it (negative permission).
