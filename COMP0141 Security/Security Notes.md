@@ -191,8 +191,7 @@ The overflow may overwrite:
 2. **Return Address**
 3. **Saved Frame Pointer**
    - Control-flow Hijacking
-   - Execution jumps to attacker-controlled address.
-   - The attacker may execute *shellcode* with a NOP sequence, giving them arbitrary code execution with high privileges.
+   - Execution jumps to attacker-controlled address and run *shellcode* with a NOP sequence,. The attacker gain  arbitrary code execution with program's privileges.
 
 #### 3. Mitigations for Buffer Overflow
 
@@ -244,7 +243,7 @@ The condition `'1'='1'` is always true, so the attacker can bypass authenticatio
 
 #### 4. Mitigations for SQL Injection
 
-1. **Parameterized Queries**: The user input is treated only as data, not executable SQL syntax.
+1. Use **prepared statements** (with parameterised queries) to ensure user input is treated as data, not code.
 2. **Server-side Input Sanitization**: Accept only safe input or correctly escape input.
 
 ### IV. Clickjacking
@@ -260,6 +259,12 @@ The attacker puts an **invisible layer** over a normal-looking page, tricking a 
 
 - **XSS** exploits the **client's trust in the server** (the browser trusts the site, so it runs the script).
 - **CSRF** exploits the **server's trust in the client** (the server trusts the request because it carries the right cookie).
+
+
+example of attacker's action:
+- change the victim's email address or password
+- transfer money from the victim's bank account
+- take over the victim's account
 
 ### VI. Cookies
 
