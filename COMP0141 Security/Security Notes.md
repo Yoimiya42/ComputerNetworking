@@ -252,7 +252,7 @@ The attacker puts an **invisible layer** over a normal-looking page, tricking a 
 - Mitigation: `X-Frame-Options` or **CSP** `frame-ancestors` — stop the site being loaded inside a frame.
 
 ### V. Cross-Site Scripting (XSS) and Cross-Site Request Forgery (CSRF)
-1. **Cross-Site Scripting (XSS)**: **Injecting malicious scripts** into a trusted website, so the victim’s browser **executes it with that site’s authority**.
+1. **Cross-Site Scripting (XSS)**: **Injecting malicious scripts** into a trusted website, so the victim’s browser **runs it with that site’s authority**, and the script can read cookies and session tokens.
    - Mitigation: **Content Security Policy (CSP)  / Input Sanitization (allowlist)**
 2. **Cross-Site Request Forgery (CSRF)**: Tricking a logged-in user's browser into **sending unauthorized requests** with user's cookies, so the site accepts the request as legitimate.
    - Mitigation: **CSRF token** (a random string attached to session that is not sent automatically) / **SameSite cookie**.
