@@ -178,7 +178,7 @@ local variable2
 
 #### 1. What is a buffer overflow?
 
-A buffer overflow occurs when a program **writes more data into a buffer than it can hold, so the data goes beyond the buffer's boundary and overwrites adjacent memory**.
+A buffer overflow occurs when **the data a program writes goes beyond the buffer's boundary and overwrites adjacent memory**.
 
 #### 2. How can a buffer overflow be exploited?
 
@@ -247,13 +247,39 @@ The condition `'1'='1'` is always true, so the attacker can bypass authenticatio
 1. **Parameterized Queries**: The user input is treated only as data, not executable SQL syntax.
 2. **Server-side Input Sanitization**: Accept only safe input or correctly escape input.
 
-### IV. Other Vulnerabilities
+### IV. Clickjacking
 
-1. **Clickjacking**: Tricking a user into clicking a **hidden or disguised button** on a trusted website, causing an unintended action.
-   - **Mitigation**: CSP / prevent framing.
-2. **Cross-Site Scripting (XSS)**: **Injecting malicious scripts** into a trusted website, so that it can **execute in the user's browser**.
-   - **Mitigation**: CSP / sanitize HTML.
-3. **Cross-Site Request Forgery (CSRF)**: Tricking a logged-in user's browser into **sending unauthorized requests** to a trusted website.
-   - **Mitigation**: CSRF token / SameSite cookie.
+The attacker puts an **invisible layer** over a normal-looking page, tricking a user into clicking a **hidden or disguised button** on a trusted website, causing an unintended action.
+- Mitigation: `X-Frame-Options` or **CSP** `frame-ancestors` — stop the site being loaded inside a frame.
+
+### V. Cross-Site Scripting (XSS) and Cross-Site Request Forgery (CSRF)
+1. **Cross-Site Scripting (XSS)**: **Injecting malicious scripts** into a trusted website, so the victim’s browser **executes it with that site’s authority**.
+   - Mitigation: **Content Security Policy (CSP)  / Input Sanitization (allowlist)**
+2. **Cross-Site Request Forgery (CSRF)**: Tricking a logged-in user's browser into **sending unauthorized requests** with user's cookies, so the site accepts the request as legitimate.
+   - Mitigation: **CSRF token** (a random string attached to session that is not sent automatically) / **SameSite cookie**.
+
+- **XSS** exploits the **client's trust in the server** (the browser trusts the site, so it runs the script).
+- **CSRF** exploits the **server's trust in the client** (the server trusts the request because it carries the right cookie).
+
+### VI. Cookies
+
+#### 1. What is a cookie?
+
+A cookie is a **name–value pair** stored by the browser and **automatically attached to requests**. 
+
+#### 2. Two types of cookies
+
+1. **Session cookies**: deleted when the browsing session ends (the browser is closed).
+2. **Persistent cookies**: stay until a fixed expiry date 
+
+#### 3. What are cookies used for?
+
+1. **Session management**: keep the user logged in, remember a shopping cart.
+2. **Personalisation**: remember user preferences.
+3. **Tracking**: record what the user viewed, so the site can show targeted ads.
+
+*(Mnemonic: **S**ession / **P**ersonalisation / **T**racking — "SPT")*
 
 ---
+
+
