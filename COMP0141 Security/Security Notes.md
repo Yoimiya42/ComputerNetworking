@@ -211,9 +211,14 @@ An attacker sends **numerous SYN requests** without completing the handshake, ca
 
 ### III. Security Mechanisms
 
-1. **Firewalls**: Filter network traffic and prevent **unauthorized network access to or from a private network** based on **predefined security rules** (IP addresses, ports, and protocols).
-2. **Network Intrusion Detection Systems (NIDS)**: Monitor network traffic for **suspicious activity** and **alert administrators** of potential security risks.
-3. **Virtual Private Networks (VPNs)**: create an **encrypted tunnel** over an untrusted network, **protecting data from eavesdropping and modification in transit**. The user must **authenticate before the tunnel opens**.
+1. **Firewalls**: 
+   - Purpose: **enforces a traffic policy at the network boundary**
+   - Filter network traffic and prevent **unauthorized network access to or from a private network** based on **predefined security rules** (IP addresses, ports, and protocols).
+2. **Network Intrusion Detection Systems (NIDS)**: 
+   - Purpose: Monitor suspicious activity and **alert administrators** of potential security risks.
+3. **Virtual Private Networks (VPNs)**: 
+   - Purpose: Protect the confidentiality abd integrity of data over an untrusted network (e.g., the Internet).
+   - Create an **encrypted tunnel** to ****prevent data from eavesdropping and modification in transit**. The user must **authenticate before the tunnel opens**.
 4. **Hypertext Transfer Protocol Secure (HTTPS)**: Protect data from eavesdropping by encrypting network traffic; it does not hide IP addresses.
 
 <a id="question-4-malware"></a>
