@@ -10,7 +10,6 @@
     - [IP Datagram Format](#ip-datagram-format)
     - [IPv4 Addressing](#ipv4-addressing)
       - [CIDR: Classless Inter-Domain Routing](#cidr-classless-inter-domain-routing)
-- [\\text{Subnet mask}](#textsubnet-mask)
       - [DHCP: Dynamic Host Configuration Protocol](#dhcp-dynamic-host-configuration-protocol)
       - [NAT: Network Address Translation](#nat-network-address-translation)
   - [4.4 Forwarding](#44-forwarding)
@@ -71,9 +70,9 @@ IP address: **subnet portion** + **host portion**.
 
 **Address notation**:
 
-$$
-\underbrace{a.b.c.d}_{\text{IPv4 address}}\,/\,\underbrace{x}_{\text{prefix length}}
-$$
+```math
+\underbrace{a.b.c.d}_{\text{IPv4 address}} / \underbrace{x}_{\text{prefix length}}
+```
 
 - $a, b, c, d$: the four octets of the IPv4 address, each ranging from $0$ to $255$.
 - $x$: number of bits in the **subnet portion**, where $0 \le x \le 32$.
@@ -81,19 +80,19 @@ $$
 
 **Address structure** (32 bits in total):
 
-$$
+```math
 \underbrace{\boxed{\text{Subnet portion}}}_{x\text{ bits}}
-\;\Big|\;
+\quad\Big|\quad
 \underbrace{\boxed{\text{Host portion}}}_{(32-x)\text{ bits}}
-$$
+```
 
 **Subnet mask**:
-$$
-\text{Subnet mask}
-=
+
+```math
+\text{Subnet mask} =
 \underbrace{11\cdots1}_{x\text{ ones}}
-\;\underbrace{00\cdots0}_{(32-x)\text{ zeros}}
-$$
+\,\underbrace{00\cdots0}_{(32-x)\text{ zeros}}
+```
 
 #### DHCP: Dynamic Host Configuration Protocol
 
