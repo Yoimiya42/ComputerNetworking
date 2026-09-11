@@ -3,30 +3,32 @@
 <a id="contents"></a>
 ## Contents
 
-- [2.1 Principles of Network Applications](#21-principles-of-network-applications)
-  - [Application Architectures](#application-architectures)
-  - [Process Communication](#process-communication)
-    - [1. Within the Same Host](#1-within-the-same-host)
-    - [2. Across Different Hosts](#2-across-different-hosts)
-  - [Transport-Layer Services for the Application Layer](#transport-layer-services-for-the-application-layer)
-- [2.2 The Web and HTTP (Hypertext Transfer Protocol)](#22-the-web-and-http-hypertext-transfer-protocol)
-  - [HTTP Message Format](#http-message-format)
-  - [Cookies](#cookies)
-  - [Web Caches](#web-caches)
-- [2.3 Electronic Mail](#23-electronic-mail)
-- [2.4 DNS (Domain Name System)](#24-dns-domain-name-system)
-  - [Hierarchy of DNS Servers](#hierarchy-of-dns-servers)
-  - [DNS Resource Records](#dns-resource-records)
-  - [DNS Protocol \& Message](#dns-protocol--message)
-- [2.5 Peer-to-Peer File Distribution](#25-peer-to-peer-file-distribution)
-  - [Scalability Analysis: Client-Server vs P2P](#scalability-analysis-client-server-vs-p2p)
-  - [BitTorrent](#bittorrent)
-- [2.6 Video Streaming and CDN (Content Distribution Network)](#26-video-streaming-and-cdn-content-distribution-network)
-  - [DASH (Dynamic Adaptive Streaming over HTTP)](#dash-dynamic-adaptive-streaming-over-http)
-  - [CDN (Content Distribution Network)](#cdn-content-distribution-network)
-- [2.7 Socket Programming](#27-socket-programming)
-  - [UDP Socket Programming](#udp-socket-programming)
-  - [TCP Socket Programming](#tcp-socket-programming)
+- [Chapter 2 Application Layer](#chapter-2-application-layer)
+  - [Contents](#contents)
+  - [2.1 Principles of Network Applications](#21-principles-of-network-applications)
+    - [Application Architectures](#application-architectures)
+    - [Process Communication](#process-communication)
+      - [1. Within the Same Host](#1-within-the-same-host)
+      - [2. Across Different Hosts](#2-across-different-hosts)
+    - [Transport-Layer Services for the Application Layer](#transport-layer-services-for-the-application-layer)
+  - [2.2 The Web and HTTP (Hypertext Transfer Protocol)](#22-the-web-and-http-hypertext-transfer-protocol)
+    - [HTTP Message Format](#http-message-format)
+    - [Cookies](#cookies)
+    - [Web Caches](#web-caches)
+  - [2.3 Electronic Mail](#23-electronic-mail)
+  - [2.4 DNS (Domain Name System)](#24-dns-domain-name-system)
+    - [Hierarchy of DNS Servers](#hierarchy-of-dns-servers)
+    - [DNS Resource Records](#dns-resource-records)
+    - [DNS Protocol \& Message](#dns-protocol--message)
+  - [2.5 Peer-to-Peer File Distribution](#25-peer-to-peer-file-distribution)
+    - [Scalability Analysis: Client-Server vs P2P](#scalability-analysis-client-server-vs-p2p)
+    - [BitTorrent](#bittorrent)
+  - [2.6 Video Streaming and CDN (Content Distribution Network)](#26-video-streaming-and-cdn-content-distribution-network)
+    - [DASH (Dynamic Adaptive Streaming over HTTP)](#dash-dynamic-adaptive-streaming-over-http)
+    - [CDN (Content Distribution Network)](#cdn-content-distribution-network)
+  - [2.7 Socket Programming](#27-socket-programming)
+    - [UDP Socket Programming](#udp-socket-programming)
+    - [TCP Socket Programming](#tcp-socket-programming)
 
 --- 
 
@@ -161,11 +163,10 @@ e.g., `www.somecompany.com` -> `server12.london.somecompany.com` -> `121.7.106.4
    - Provided by ISPs, act as a *proxy*, and forward queries into the hierarchy.
    - Cache recent name-to-address translation pairs locally to reduce query time and traffic in the hierarchy. Cache entries time out after the TTL (Time To Live).
 
-End hosts -> Local DNS: **recursive query** (the local DNS is responsible for querying the DNS hierarchy and directly returning the result) 
-Local DNS -> Other DNS: **iterative query** (the local DNS is told which DNS server to contact next until it reaches the authoritative DNS server and gets the result)
+- End hosts -> Local DNS: **recursive query** (the local DNS is responsible for querying the DNS hierarchy and directly returning the result)    
+- Local DNS -> Other DNS: **iterative query** (the local DNS is told which DNS server to contact next until it reaches the authoritative DNS server and gets the result)
 
 ### DNS Resource Records
-Reso:
 ```python
 RR = (Name, Value, Type, TTL);
 

@@ -31,6 +31,8 @@ No guarantees on:
 
 ## 4.3  The Internet Protocol (IP)
 
+### IP Datagram Format
+![IP Datagram Format](/Chapter4_NetworkLaye_DataPlane/Pictures/IP_datagram_format.jpg)
 ---
 
 ## 4.4  Forwarding
