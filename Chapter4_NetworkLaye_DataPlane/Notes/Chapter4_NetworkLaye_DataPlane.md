@@ -13,6 +13,7 @@
     - [DHCP: Dynamic Host Configuration Protocol](#dhcp-dynamic-host-configuration-protocol)
     - [NAT: Network Address Translation](#nat-network-address-translation)
     - [IPv6 Datagram format](#ipv6-datagram-format)
+    - [Transitioning from IPv4 to IPv6](#transitioning-from-ipv4-to-ipv6)
   - [4.4 Forwarding](#44-forwarding)
   - [4.5 Middleboxes](#45-middleboxes)
 
@@ -106,6 +107,12 @@ IP address: **subnet portion** + **host portion**.
 ![NAT](../Pictures/NAT.jpg)
 
 ### IPv6 Datagram format
+![IPv6 Datagram Format](/Chapter4_NetworkLaye_DataPlane/Pictures/IPv6_format.jpg)
+
+16bits * 8 groups(each group has 4 hexadecimal digits)
+
+### Transitioning from IPv4 to IPv6
+![Transitioning from IPv4 to IPv6](/Chapter4_NetworkLaye_DataPlane/Pictures/Tunneling.jpg)
 
 ---
 
