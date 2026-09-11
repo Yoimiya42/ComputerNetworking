@@ -7,11 +7,12 @@
   - [4.1 Overview of Network Layer](#41-overview-of-network-layer)
   - [4.2 Router](#42-router)
   - [4.3 The Internet Protocol (IP)](#43-the-internet-protocol-ip)
-    - [IP Datagram Format](#ip-datagram-format)
+    - [IPv4 Datagram Format](#ipv4-datagram-format)
     - [IPv4 Addressing](#ipv4-addressing)
-      - [CIDR: Classless Inter-Domain Routing](#cidr-classless-inter-domain-routing)
-      - [DHCP: Dynamic Host Configuration Protocol](#dhcp-dynamic-host-configuration-protocol)
-      - [NAT: Network Address Translation](#nat-network-address-translation)
+    - [CIDR: Classless Inter-Domain Routing](#cidr-classless-inter-domain-routing)
+    - [DHCP: Dynamic Host Configuration Protocol](#dhcp-dynamic-host-configuration-protocol)
+    - [NAT: Network Address Translation](#nat-network-address-translation)
+    - [IPv6 Datagram format](#ipv6-datagram-format)
   - [4.4 Forwarding](#44-forwarding)
   - [4.5 Middleboxes](#45-middleboxes)
 
@@ -49,7 +50,7 @@ No guarantees on:
 
 ## 4.3 The Internet Protocol (IP)
 
-### IP Datagram Format
+### IPv4 Datagram Format
 
 ![IP Datagram Format](../Pictures/IP_datagram_format.jpg)
 
@@ -66,7 +67,7 @@ IP address: **subnet portion** + **host portion**.
 
 **Subnet** (IP network): interfaces can physically reach each other **without an intervening router**.
 
-#### CIDR: Classless Inter-Domain Routing
+### CIDR: Classless Inter-Domain Routing
 
 **Address notation**:
 
@@ -94,15 +95,17 @@ IP address: **subnet portion** + **host portion**.
 \,\underbrace{00\cdots0}_{(32-x)\text{ zeros}}
 ```
 
-#### DHCP: Dynamic Host Configuration Protocol
+### DHCP: Dynamic Host Configuration Protocol
 
 ![DHCP](../Pictures/DHCP_server_client.jpg)
 
-#### NAT: Network Address Translation
+### NAT: Network Address Translation
 
 **Private IP address + original port** → **NAT device** → **Public IP address + mapped port**
 
 ![NAT](../Pictures/NAT.jpg)
+
+### IPv6 Datagram format
 
 ---
 
