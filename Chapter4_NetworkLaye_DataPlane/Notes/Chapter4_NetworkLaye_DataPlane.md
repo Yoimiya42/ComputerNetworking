@@ -2,13 +2,19 @@
 
 ## Contents
 
-- [4.1 Overview of Network Layer](#41-overview-of-network-layer)
-- [4.2 Router](#42-router)
-- [4.3 The Internet Protocol (IP)](#43-the-internet-protocol-ip)
-  - [IP Datagram Format](#ip-datagram-format)
-  - [IPv4 Addressing](#ipv4-addressing)
-- [4.4 Forwarding](#44-forwarding)
-- [4.5 Middleboxes](#45-middleboxes)
+- [Chapter 4 Network Layer: Data Plane](#chapter-4-network-layer-data-plane)
+  - [Contents](#contents)
+  - [4.1 Overview of Network Layer](#41-overview-of-network-layer)
+  - [4.2 Router](#42-router)
+  - [4.3 The Internet Protocol (IP)](#43-the-internet-protocol-ip)
+    - [IP Datagram Format](#ip-datagram-format)
+    - [IPv4 Addressing](#ipv4-addressing)
+      - [CIDR: Classless Inter-Domain Routing](#cidr-classless-inter-domain-routing)
+- [\\text{Subnet mask}](#textsubnet-mask)
+      - [DHCP: Dynamic Host Configuration Protocol](#dhcp-dynamic-host-configuration-protocol)
+      - [NAT: Network Address Translation](#nat-network-address-translation)
+  - [4.4 Forwarding](#44-forwarding)
+  - [4.5 Middleboxes](#45-middleboxes)
 
 ## 4.1 Overview of Network Layer
 
@@ -82,7 +88,6 @@ $$
 $$
 
 **Subnet mask**:
-
 $$
 \text{Subnet mask}
 =
