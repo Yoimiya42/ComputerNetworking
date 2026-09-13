@@ -6,6 +6,9 @@
   - [Contents](#contents)
   - [4.1 Overview of Network Layer](#41-overview-of-network-layer)
   - [4.2 Router](#42-router)
+    - [Router Architecture](#router-architecture)
+    - [Input Port](#input-port)
+    - [Switching Fabric](#switching-fabric)
   - [4.3 The Internet Protocol (IP)](#43-the-internet-protocol-ip)
     - [IPv4 Datagram Format](#ipv4-datagram-format)
     - [IPv4 Addressing](#ipv4-addressing)
@@ -15,6 +18,10 @@
     - [IPv6 Datagram format](#ipv6-datagram-format)
     - [Transitioning from IPv4 to IPv6](#transitioning-from-ipv4-to-ipv6)
   - [4.4 Forwarding](#44-forwarding)
+    - [Generalized Forwarding (**Match+Actions**)](#generalized-forwarding-matchactions)
+    - [Matches](#matches)
+    - [Actions](#actions)
+    - [OpenFlow Abstractions](#openflow-abstractions)
   - [4.5 Middleboxes](#45-middleboxes)
 
 ## 4.1 Overview of Network Layer
@@ -46,6 +53,28 @@ No guarantees on:
 ---
 
 ## 4.2 Router
+
+### Router Architecture
+
+|Components|Main Functions|Plane|
+|----------|-------------|-----|
+|Input port|1. Process link-layer frames; 2. Lookup output interface; 3.Queuing|Data|
+|Switching fabric| Transfer Packets from input to output|Data|
+|Output port|1. Packet scheduling; 2.Encapsulation; 3.Transmit|Data|
+|Routing Processor|1. Run routing algorithms; 2. Maintain routing table|Control|
+
+### Input Port
+1. **Physical-Layer Processing**: recover bits from incoming signals.
+2. **Link-layer Processing**: process the frame and extract the IP datagram.
+3. **Lookup**: math the destination IP address against the forwarding table with the **Longest Prefix Matching**.
+4. **Queuing**: a queued packet must wait for transfer through the fabric (even though its output port is free) because of **Head Of the Line(HOL) Blocking** (another packet blocks the front of its input queue).
+5. **Forwarding**: transfer the packet through the fabric to the appropriate output port.
+
+### Switching Fabric
+
+![Switching Fabric](/Chapter4_Network
+
+Laye_DataPlane/Pictures/switching_techniques.jpg)
 
 ---
 
@@ -117,6 +146,31 @@ IP address: **subnet portion** + **host portion**.
 ---
 
 ## 4.4 Forwarding
+
+### Generalized Forwarding (**Match+Actions**)
+Flow table in OpenFlow:
+1. Priority number
+2. **Match** conditions (fields in packet headers)
+3. **Actions** to be taken
+4. Counters
+
+### Matches
+![Matching Fields](/Chapter4_NetworkLaye_DataPlane/Pictures/matching_fields.png)
+
+### Actions
+- Forwarding (destination-based forwarding)
+- Dropping 
+- Modifying fields
+- Encapsulating and forwarding to a controller
+  
+### OpenFlow Abstractions
+||Match|Actions|
+|:-:|:-:|:-:|
+|Router|Longest Des IP prefix| Forward out a link|
+|Switch (Layer-2 switching)|Destination MAC address|forward or flood|
+|**Firewall**|Src/Des IP addresses / port numbers, protocols|Permit / Deny|
+|**NAT**| Source IP address & port (LAN)|Translate IP address & port (WAN)|
+|Load Balancing|Src/Des IP addresses/port numbers|Forwarding to different paths/servers|
 
 ---
 
